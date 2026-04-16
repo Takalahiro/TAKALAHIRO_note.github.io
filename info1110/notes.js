@@ -3,27 +3,32 @@
 // ==========================
 async function loadNote() {
   try {
-    // 注意这里的路径 — 你的网站根已经带有 TAKALAHIRO_note.github.io/
-    const response = await fetch("TAKALAHIRO_note.github.io/info1110/notes.md");
-    
-    if (!response.ok) throw new Error("无法加载笔记文件");
+    // ✅ 使用相对路径即可
+    const response = await fetch("./notes.md");
+    if (!response.ok) throw new Error("无法加载笔记文件：" + response.status);
 
     const text = await response.text();
     document.getElementById("note-content").innerHTML = marked.parse(text);
+
+    // 生成目录与恢复状态
+    enhancePage();
   } catch (err) {
     console.error(err);
     document.getElementById("note-content").innerHTML = "❌ 加载失败，请检查路径或文件名。";
   }
 }
 
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
+// ==========================
+// 页面加载事件
+// ==========================
+document.addEventListener("DOMContentLoaded", () => {
   loadNote();
 
-  document.getElementById('toggle-theme-btn').addEventListener('click', toggleTheme);
-  document.getElementById('toggle-font-btn').addEventListener('click', toggleFont);
+  // 按钮事件绑定
+  const themeBtn = document.getElementById('toggle-theme-btn');
+  const fontBtn = document.getElementById('toggle-font-btn');
+  if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+  if (fontBtn) fontBtn.addEventListener('click', toggleFont);
 
   // 恢复主题与字体
   if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
@@ -32,9 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
   else if (fontMode === 'mono') document.body.classList.add('mono-font');
 });
 
-
 // ==========================
-// 2. 目录
+// 2. 目录、书签与高亮等功能
 // ==========================
 function enhancePage() {
   generateTOC();
@@ -42,21 +46,26 @@ function enhancePage() {
   enableHighlight();
 }
 
-// 目录
-// 
-// 改进版 TOC：分层可收纳标题
-//
+// 生成目录
 function generateTOC() {
   const content = document.getElementById('note-content');
   const toc = document.getElementById('toc');
-  toc.innerHTML = '';
+  if (!content || !toc) return;
 
+  toc.innerHTML = '';
   const headings = Array.from(content.querySelectorAll('h2, h3'));
   let currentParent = null;
 
   headings.forEach(h => {
-    const id = h.id || h.textContent.trim().replace(/\s+/g, '-').toLowerCase();
+    const id = h.id || h.textContent.trim().replace(/\\s+/g, '-').toLowerCase();
     h.id = id;
+
+    // 增加书签图标
+    const icon = document.createElement('span');
+    icon.textContent = '🔖';
+    icon.className = 'bookmark-icon';
+    icon.onclick = () => toggleBookmark(id, icon);
+    h.appendChild(icon);
 
     if (h.tagName === 'H2') {
       const li = document.createElement('li');
@@ -80,17 +89,6 @@ function generateTOC() {
   });
 }
 
-
-    // 加书签图标
-    const icon = document.createElement('span');
-    icon.textContent = '🔖';
-    icon.className = 'bookmark-icon';
-    icon.onclick = () => toggleBookmark(id, icon);
-    h.appendChild(icon);
-  });
-}
-
-
 // 书签功能
 function toggleBookmark(id, icon) {
   const saved = JSON.parse(localStorage.getItem('bookmark')) || null;
@@ -109,12 +107,12 @@ function restoreBookmark() {
   if (saved) {
     const target = document.getElementById(saved);
     if (target) target.scrollIntoView({ behavior: 'smooth' });
-    const icon = target.querySelector('.bookmark-icon');
+    const icon = target?.querySelector('.bookmark-icon');
     if (icon) icon.classList.add('active');
   }
 }
 
-// 高亮选中内容
+// 高亮功能
 function enableHighlight() {
   document.addEventListener('mouseup', () => {
     const selection = window.getSelection();
@@ -132,24 +130,13 @@ function enableHighlight() {
   });
 }
 
-// 保存高亮内容
+// 保存和恢复高亮
 function saveHighlights() {
-  const container = document.getElementById('note-container');
-  localStorage.setItem('highlights', container.innerHTML);
+  const container = document.getElementById('note-content');
+  if (container) localStorage.setItem('highlights', container.innerHTML);
 }
 
-// 恢复高亮内容
 function restoreHighlights() {
   const saved = localStorage.getItem('highlights');
   if (saved) {
-    document.getElementById('note-container').innerHTML = saved;
-    enhancePage(); // 重新生成目录
-  }
-}
-
-// 页面加载时执行
-window.onload = () => {
-  restoreHighlights();
-  loadMarkdown('https://raw.githubusercontent.com/TAKALAHIRO_note.github.io/info1110/notes.md');
-};
-
+    document.getElementById('note-content').innerHTML =
