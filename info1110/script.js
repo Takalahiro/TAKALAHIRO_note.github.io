@@ -41,3 +41,4 @@ async function loadMarkdownNote() {
     `;
     console.error(err);
   }
+}
