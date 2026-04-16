@@ -1,43 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>INFO1110 - Python 笔记</title>
-  <link rel="stylesheet" href="style.css">
+  <title>INF01110 学习中心 - TAKAHIRO</title>
   <link rel="stylesheet" href="notes.css">
 </head>
-<body>
-  <header>
-    <h1>Python</h1>
-    <p class="subtitle">INFO1110 学习中心 · TAKAHIRO</p>
-  </header>
+<body onload="loadNote()">
+  <h1>PYTHON</h1>
+  <h2>INF01110 学习中心 - TAKAHIRO</h2>
+  <a href="../index.html">返回主页</a>
 
-  <nav>
-    <a href="index.html">返回主页</a>
-  </nav>
+  <h3>目录</h3>
+  <div id="note-content">正在加载笔记内容...</div>
 
-  <main class="note-layout">
-    <aside class="sidebar">
-      <h3>目录</h3>
-      <ul id="toc"></ul>
-    </aside>
+  <input type="text" value="search">
+  <button>切换状态</button>
+  <button>切换字体</button>
 
-    <section class="note-container">
-      <div id="note-content">正在加载笔记内容...</div>
-    </section>
-  </main>
+  <footer>© 2026 INF01110 TAKAHIRO</footer>
 
-  <div class="toolbar">
-    <input type="text" id="search-box" placeholder="search">
-    <button id="toggle-theme-btn">切换风格</button>
-    <button id="toggle-font-btn">切换字体</button>
-  </div>
-
-  <footer>© 2026 INFO1110 TAKAHIRO</footer>
-  <div id="note-content"></div>
+  <!-- ✅ 先加载 marked，再加载你自己的 JS -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="notes.js"></script>
-
-
 </body>
 </html>
