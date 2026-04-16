@@ -1,56 +1,23 @@
-// ==== 存储和操作逻辑 ====
-const form = document.getElementById('noteForm');
-const titleInput = document.getElementById('noteTitle');
-const contentInput = document.getElementById('noteContent');
-const notesContainer = document.getElementById('notesContainer');
+window.addEventListener("load", loadMarkdownNote);
 
-// 从 LocalStorage 中读取已有笔记
-let notes = JSON.parse(localStorage.getItem('notes')) || [];
+async function loadMarkdownNote() {
+  const notesContainer = document.getElementById("notesContainer");
+  const mdUrl = "https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md";
 
-// 渲染笔记函数
-function renderNotes() {
-  notesContainer.innerHTML = '';
-  if (notes.length === 0) {
-    notesContainer.innerHTML = '<p class="empty">暂无笔记</p>';
-    return;
-  }
+  try {
+    const response = await fetch(mdUrl);
+    if (!response.ok) throw new Error(`无法加载：${response.status}`);
+    const mdText = await response.text();
 
-  notes.forEach((note, index) => {
-    const div = document.createElement('div');
-    div.className = 'note';
-    div.innerHTML = `
-      <button class="delete-btn" onclick="deleteNote(${index})">删除</button>
-      <h3>${note.title}</h3>
-      <p>${note.content}</p>
-      <small style="color:#999;">${note.date}</small>
+    // 使用 marked.js 转换为 HTML
+    const htmlContent = marked.parse(mdText);
+
+    notesContainer.innerHTML = `
+      <div class="note">
+        <h2>📘 info1110 / notes.md</h2>
+        <div>${htmlContent}</div>
+        <small style="color:#999;">加载自 ${mdUrl}</small>
+      </div>
     `;
-    notesContainer.appendChild(div);
-  });
-}
-
-// 添加笔记
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const newNote = {
-    title: titleInput.value.trim(),
-    content: contentInput.value.trim(),
-    date: new Date().toLocaleString()
-  };
-  if (!newNote.title) return alert("请输入笔记标题!");
-
-  notes.push(newNote);
-  localStorage.setItem('notes', JSON.stringify(notes));
-  titleInput.value = '';
-  contentInput.value = '';
-  renderNotes();
-});
-
-// 删除笔记
-function deleteNote(index) {
-  notes.splice(index, 1);
-  localStorage.setItem('notes', JSON.stringify(notes));
-  renderNotes();
-}
-
-// 页面加载时渲染
-renderNotes();
+  } catch (err) {
+    notesContainer.innerHTML = `<p style="color:red;">加载失败：${err.message}</p>`
