@@ -1,5 +1,5 @@
 // ==========================
-// 1. 加载 Markdown 文件并渲染
+// 1. 加载 Markdown 文件
 // ==========================
 async function loadMarkdown(path) {
   try {
@@ -15,7 +15,7 @@ async function loadMarkdown(path) {
 }
 
 // ==========================
-// 2. 生成目录、书签、高亮功能
+// 2. 目录
 // ==========================
 function enhancePage() {
   generateTOC();
@@ -23,22 +23,42 @@ function enhancePage() {
   enableHighlight();
 }
 
-// 自动生成目录
+// 目录
+// 
+// 改进版 TOC：分层可收纳标题
+//
 function generateTOC() {
   const content = document.getElementById('note-content');
   const toc = document.getElementById('toc');
-  const headings = content.querySelectorAll('h2, h3, h4');
   toc.innerHTML = '';
+
+  const headings = Array.from(content.querySelectorAll('h2, h3'));
+  let currentParent = null;
 
   headings.forEach(h => {
     const id = h.id || h.textContent.trim().replace(/\s+/g, '-').toLowerCase();
     h.id = id;
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = `#${id}`;
-    a.textContent = h.textContent.trim();
-    li.appendChild(a);
-    toc.appendChild(li);
+
+    if (h.tagName === 'H2') {
+      const li = document.createElement('li');
+      li.classList.add('collapsible');
+      li.textContent = h.textContent;
+      li.onclick = () => li.classList.toggle('open');
+
+      const sublist = document.createElement('ul');
+      li.appendChild(sublist);
+      toc.appendChild(li);
+      currentParent = sublist;
+    } else if (h.tagName === 'H3') {
+      if (currentParent) {
+        const subLi = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${id}`;
+        link.textContent = h.textContent;
+        subLi.appendChild(link);
+        currentParent.appendChild(subLi);
+      }
+    }
 
     // 加书签图标
     const icon = document.createElement('span');
@@ -48,6 +68,7 @@ function generateTOC() {
     h.appendChild(icon);
   });
 }
+
 
 // 书签功能
 function toggleBookmark(id, icon) {
