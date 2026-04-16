@@ -6,17 +6,14 @@ async function loadMarkdownNote() {
   const container = document.getElementById("notesContainer");
 
   try {
-    // 加载 /info1110/notes.md 文件
+    // 加载 notes.md 文件
     const response = await fetch("notes.md");
-
-    if (!response.ok) {
-      throw new Error(`加载失败，HTTP状态码: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`加载失败，HTTP状态码: ${response.status}`);
 
     const mdText = await response.text();
 
-    // 使用 marked 把 Markdown 转换成 HTML
-    const htmlContent = marked.parse(mdText, {
+    // 正确的 marked 配置
+    marked.setOptions({
       highlight: (code, lang) => {
         if (hljs.getLanguage(lang)) {
           return hljs.highlight(code, { language: lang }).value;
@@ -26,12 +23,16 @@ async function loadMarkdownNote() {
       }
     });
 
-    // 显示到页面
+    // 转换 Markdown → HTML
+    const htmlContent = marked.parse(mdText);
+
+    // 写入到页面
     container.innerHTML = htmlContent;
 
-    // 代码高亮
+    // 启动代码高亮
     hljs.highlightAll();
 
+    console.log("✅ Markdown 渲染完成");
   } catch (err) {
     container.innerHTML = `
       <p style="color:red;">
@@ -39,6 +40,6 @@ async function loadMarkdownNote() {
         请确认文件 <code>notes.md</code> 是否存在于同目录。
       </p>
     `;
-    console.error(err);
+    console.error("❌ 渲染出错详情:", err);
   }
 }
