@@ -1,60 +1,85 @@
 body {
   font-family: "Poppins", "Noto Sans SC", sans-serif;
   margin: 0;
-  padding: 0;
   background: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
-  background-attachment: fixed;
+  color: #222;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #222;
 }
 
-/* 毛玻璃通用 */
+/* 毛玻璃容器样式 */
 .glass-header, .glass-card, .glass-footer {
   background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  width: 85%;
+  width: 90%;
   max-width: 900px;
   margin: 20px auto;
-  padding: 20px 30px;
+  padding: 25px 35px;
 }
 
-/* 标题样式 */
+/* 标题 */
 .glass-header h1 {
   text-align: center;
   font-weight: 600;
-  font-size: 1.8rem;
+  margin: 10px 0;
 }
 
-/* 内容优化 */
+/* 内容区 */
 #notesContainer {
   line-height: 1.7;
-  font-size: 1rem;
 }
 
-#notesContainer h2, h3 {
-  color: #0a5cff;
-  margin-top: 1.5em;
+/* Markdown元素美化 */
+#notesContainer h2, #notesContainer h3 {
+  color: #0066cc;
+  margin-top: 1.6em;
 }
 
 #notesContainer pre {
-  border-radius: 8px;
-  overflow-x: auto;
+  background: rgba(30, 30, 30, 0.9);
+  color: #f8f8f2;
   padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
 }
 
-/* 引用与列表 */
+/* Markdown 表格 */
+#notesContainer table {
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+}
+
+#notesContainer th, #notesContainer td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+#notesContainer th {
+  background-color: rgba(0, 102, 204, 0.1);
+  font-weight: 600;
+}
+
+/* 引用块 */
 #notesContainer blockquote {
   border-left: 4px solid #0a5cff;
   padding-left: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
   margin: 15px 0;
-  background: rgba(255, 255, 255, 0.3);
+  font-style: italic;
 }
 
-#notesContainer ul, ol {
-  padding-left: 25px;
+/* 底部 */
+.glass-footer {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
 }
