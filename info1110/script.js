@@ -1,61 +1,65 @@
-// 当页面加载时执行
 window.addEventListener("load", loadMarkdownNotes);
 
-// 全局笔记存储
 let notes = [];
-
-// 选择容器元素
 const notesContainer = document.getElementById("notesContainer");
 
-// 使用 marked.js 转换 Markdown → HTML
-function renderNotes() {
-  notesContainer.innerHTML = '';
-  if (notes.length === 0) {
-    notesContainer.innerHTML = '<p class="empty">暂无 Markdown 文件</p>';
-    return;
-  }
+// 修改这里：替换为你的 GitHub 用户名和仓库信息
+const GITHUB_USER = "你的用户名";            // 👈 改：你的 GitHub 用户名
+const REPO_NAME = "notes";                   // 👈 改：仓库名
+const BRANCH_NAME = "main";                  // 👈 改：分支名，如 main 或 master
 
-  notes.forEach((note) => {
-    const div = document.createElement("div");
-    div.className = "note";
-    div.innerHTML = `
-      <h3>${note.title}</h3>
-      <div>${note.content}</div>
-      <small style="color:#999;">${note.date}</small>
-    `;
-    notesContainer.appendChild(div);
-  });
+// 如果你知道要显示哪些 Markdown 文件，可以列出来：
+const mdFiles = [
+  "note1.md",
+  "note2.md"
+];
+
+// 构造原始文件URL
+function getRawUrl(fileName) {
+  return `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH_NAME}/markdowns/${fileName}`;
 }
 
-// 自动加载 markdowns 文件夹内的文件
 async function loadMarkdownNotes() {
-  // 用于存放要加载的文件名（可手动维护或从服务器/JSON配置中读取）
-  const mdFiles = [
-    "markdowns/note1.md",
-    "markdowns/note2.md",
-    "markdowns/note3.md"
-  ];
-
   for (const file of mdFiles) {
     try {
-      const response = await fetch(file);
+      const url = getRawUrl(file);
+      const response = await fetch(url);
       if (!response.ok) {
         console.warn(`⚠️ 无法加载文件: ${file}`);
         continue;
       }
       const mdText = await response.text();
       const htmlContent = marked.parse(mdText);
-      const fileName = file.split("/").pop().replace(".md", "");
+      const title = file.replace(".md", "");
 
       notes.push({
-        title: fileName,
+        title,
         content: htmlContent,
         date: new Date().toLocaleString()
       });
-    } catch (error) {
-      console.error(`❌ 加载失败: ${file}`, error);
+    } catch (err) {
+      console.error(`❌ 读取失败 ${file}`, err);
     }
   }
 
   renderNotes();
 }
+
+function renderNotes() {
+  notesContainer.innerHTML = "";
+  if (notes.length === 0) {
+    notesContainer.innerHTML = "<p>暂无 Markdown 内容。</p>";
+    return;
+  }
+  notes.forEach((n) => {
+    const div = document.createElement("div");
+    div.className = "note";
+    div.innerHTML = `
+      <h3>${n.title}</h3>
+      <div>${n.content}</div>
+      <small style="color:#999;">${n.date}</small>
+    `;
+    notesContainer.appendChild(div);
+  });
+}
+
