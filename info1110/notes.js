@@ -44,7 +44,6 @@ function generateTOC() {
       li.classList.add('collapsible');
       li.textContent = h.textContent;
       li.onclick = () => li.classList.toggle('open');
-
       const sublist = document.createElement('ul');
       li.appendChild(sublist);
       toc.appendChild(li);
@@ -59,6 +58,9 @@ function generateTOC() {
         currentParent.appendChild(subLi);
       }
     }
+  });
+}
+
 
     // 加书签图标
     const icon = document.createElement('span');
