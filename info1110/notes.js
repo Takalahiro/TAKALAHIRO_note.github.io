@@ -1,15 +1,25 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // 点击标题返回顶部
-  const headerTitle = document.querySelector("header h1");
-  headerTitle.style.cursor = "pointer";
-  headerTitle.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+window.addEventListener("DOMContentLoaded", loadMarkdownNote);
 
-  // 页面淡入动画
-  document.body.style.opacity = "0";
-  setTimeout(() => {
-    document.body.style.transition = "opacity 1s ease-in";
-    document.body.style.opacity = "1";
-  }, 50);
-});
+async function loadMarkdownNote() {
+  const container = document.getElementById("notesContainer");
+  const mdFile = "notes.md";
+
+  try {
+    const response = await fetch(mdFile);
+    const mdText = await response.text();
+
+    const htmlContent = marked.parse(mdText, {
+      highlight: (code, lang) => {
+        if (hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      }
+    });
+
+    container.innerHTML = htmlContent;
+    hljs.highlightAll();
+  } catch (err) {
+    container.innerHTML = `<p style="color:red;">加载失败：${err.message}</p>`;
+  }
+}
