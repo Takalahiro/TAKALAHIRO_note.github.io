@@ -3,29 +3,21 @@
 // ==========================
 async function loadNote() {
   try {
-    const params = new URLSearchParams(window.location.search);
-    const file = params.get("file") || "info1110/notes.md"; // 默认从 info1110 加载
+    // 直接加载本目录下的 notes.md
+    const response = await fetch("notes.md");
 
-    // 构造正确的完整路径（兼容仓库名）
-    const basePath = window.location.origin + "/TAKALAHIRO_note.github.io/";
-    const url = basePath + file;
+    if (!response.ok) {
+      throw new Error("无法加载 notes.md");
+    }
 
-    console.log("正在加载笔记：", url);
-
-    const response = await fetch(url);
-
-    if (!response.ok) throw new Error("无法加载笔记：" + url);
-    const text = await response.text();
-
-    document.getElementById("note-content").innerHTML = marked.parse(text);
-    generateTOC();
-
-  } catch (error) {
-    console.error("加载失败：", error);
-    document.getElementById("note-content").innerText =
-      "❌ 加载笔记失败，请检查文件路径是否存在。";
+    const mdText = await response.text();
+    document.getElementById("note-content").innerHTML = marked.parse(mdText);
+  } catch (err) {
+    console.error(err);
+    document.getElementById("note-content").innerHTML = "❌ 笔记加载失败，请检查文件路径。";
   }
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
