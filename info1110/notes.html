@@ -1,37 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>INFO1110 - Python 笔记</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="notes.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的笔记 | Notes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1># Python 复习笔记</h1>
-    <p class="subtitle">INFO1110 学习中心 · TAKAHIRO</p>
-  </header>
+  <div class="container">
+    <h1>我的笔记</h1>
 
-  <nav>
-    <a href="index.html">🏠 返回主页</a>
-  </nav>
+    <!-- 添加笔记表单 -->
+    <form id="noteForm">
+      <input type="text" id="noteTitle" placeholder="笔记标题" required />
+      <textarea id="noteContent" rows="4" placeholder="输入笔记内容..." required></textarea>
+      <button type="submit">添加笔记</button>
+    </form>
 
-  <main class="note-layout">
-    <div class="note-container" id="note-container">
-      <div id="note-content">正在加载笔记内容...</div>
-    </div>
+    <!-- 笔记展示区域 -->
+    <div id="notesContainer"></div>
+  </div>
 
-    <aside class="sidebar">
-      <h3>📘 目录</h3>
-      <ul id="toc"></ul>
-    </aside>
-  </main>
-
-  <footer>
-    © 2026 INFO1110 TAKAHIRO
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="notes.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
