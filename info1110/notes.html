@@ -3,24 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>我的笔记 | Notes</title>
+  <title>📘 info1110 笔记</title>
+
+  <!-- 样式文件 -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Markdown 转换库 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>我的笔记</h1>
-
-    <!-- 添加笔记表单 -->
-    <form id="noteForm">
-      <input type="text" id="noteTitle" placeholder="笔记标题" required />
-      <textarea id="noteContent" rows="4" placeholder="输入笔记内容..." required></textarea>
-      <button type="submit">添加笔记</button>
-    </form>
-
-    <!-- 笔记展示区域 -->
-    <div id="notesContainer"></div>
+    <h1>📘 info1110 学习笔记</h1>
+    <div id="notesContainer">
+      <p>Loading notes...</p>
+    </div>
   </div>
 
+  <!-- 功能逻辑文件 -->
   <script src="script.js"></script>
 </body>
 </html>
