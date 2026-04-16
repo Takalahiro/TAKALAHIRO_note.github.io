@@ -44,11 +44,7 @@ async function loadMarkdownNote() {
  * @param {HTMLElement} tocArea - 目录显示区域
  
  */
-if (!headings.length) {
-    tocArea.innerHTML = `<p>⚠️ 暂无可生成的标题。</p>`;
-    console.warn("未找到任何标题元素（h1~h6）。");
-    return;
-}
+
 
 function generateTOC(contentArea, tocArea) {
   if (!contentArea || !tocArea) return;
