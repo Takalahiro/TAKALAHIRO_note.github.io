@@ -4,7 +4,7 @@ async function loadMarkdownNote() {
   const container = document.getElementById("notesContainer");
 
   try {
-    const response = await fetch("https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/index.html"); // 👉 自动读取你的 Markdown 文件
+    const response = await fetch("notes.md"); // 👉 自动读取你的 Markdown 文件
     const mdText = await response.text();
 
     const htmlContent = marked.parse(mdText, {
