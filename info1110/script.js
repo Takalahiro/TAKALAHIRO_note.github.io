@@ -1,4 +1,3 @@
-@@ -0,0 +1,44 @@
 // script.js — 自动加载并渲染 Markdown 文件
 
 window.addEventListener("DOMContentLoaded", loadMarkdownNote);
@@ -42,4 +41,3 @@ async function loadMarkdownNote() {
     `;
     console.error(err);
   }
-}
