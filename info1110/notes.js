@@ -2,10 +2,9 @@ window.addEventListener("DOMContentLoaded", loadMarkdownNote);
 
 async function loadMarkdownNote() {
   const container = document.getElementById("notesContainer");
-  const mdFile = "notes.md";
 
   try {
-    const response = await fetch(mdFile);
+    const response = await fetch("notes.md"); // 👉 自动读取你的 Markdown 文件
     const mdText = await response.text();
 
     const htmlContent = marked.parse(mdText, {
@@ -20,6 +19,6 @@ async function loadMarkdownNote() {
     container.innerHTML = htmlContent;
     hljs.highlightAll();
   } catch (err) {
-    container.innerHTML = `<p style="color:red;">加载失败：${err.message}</p>`;
+    container.innerHTML = `<p style="color:red;">加载失败: ${err.message}</p>`;
   }
 }
