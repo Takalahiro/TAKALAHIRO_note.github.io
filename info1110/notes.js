@@ -1,22 +1,26 @@
 // ==========================
 // 1. 加载 Markdown 文件
 // ==========================
-async function loadNote() {
-  try {
-    // ✅ 使用相对路径即可
-    const response = await fetch("https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md");
-    if (!response.ok) throw new Error("无法加载笔记文件：" + response.status);
+function loadNote() {
+  const noteDiv = document.getElementById('note-content');
+  noteDiv.innerHTML = '正在加载笔记内容...';
 
-    const text = await response.text();
-    document.getElementById("note-content").innerHTML = marked.parse(text);
+  const mdURL = 'https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md';
 
-    // 生成目录与恢复状态
-    enhancePage();
-  } catch (err) {
-    console.error(err);
-    document.getElementById("note-content").innerHTML = "❌ 加载失败，请检查路径或文件名。";
-  }
+  fetch(mdURL)
+    .then(response => {
+      if (!response.ok) throw new Error('HTTP 错误 ' + response.status);
+      return response.text();
+    })
+    .then(mdText => {
+      noteDiv.innerHTML = marked.parse(mdText);
+    })
+    .catch(err => {
+      noteDiv.innerHTML = `<p style="color:red;">笔记加载失败：${err.message}</p>`;
+      console.error('加载 Markdown 出错：', err);
+    });
 }
+
 
 // ==========================
 // 页面加载事件
