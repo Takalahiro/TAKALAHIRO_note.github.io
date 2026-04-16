@@ -4,7 +4,7 @@
 async function loadNote() {
   try {
     // ✅ 使用相对路径即可
-    const response = await fetch("./notes.md");
+    const response = await fetch("https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md");
     if (!response.ok) throw new Error("无法加载笔记文件：" + response.status);
 
     const text = await response.text();
