@@ -1,73 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>INFO1110 学习中心</title>
-  <link rel="stylesheet" href="style.css">
+  <title>我的笔记</title>
+
+  <!-- Highlight.js 样式与脚本 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- marked.js Markdown 解析器 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #1e1e1e; color: #fff; }
+    pre { background: #2d2d2d; padding: 10px; border-radius: 6px; overflow-x: auto; }
+  </style>
 </head>
 <body>
-  <h1>INFO1110 学习中心</h1>
+  <div id="notesContainer">加载中，请稍候...</div>
 
-  <div class="controls">
-    <button onclick="toggleTheme()">切换主题 </button>
-    <button onclick="changeAccentColor()">更改主色 </button>
-    <select id="fontSelect" onchange="changeFontFamily()">
-      <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
-      <option value="'Fira Code', monospace">Fira Code</option>
-      <option value="'Source Code Pro', monospace">Source Code Pro</option>
-    </select>
-  </div>
-
-  <p style="text-align:center;">欢迎来到 INFO1110，请选择以下模块：</p>
-
-  <div class="modules">
-  <a href="compiler.html" class="module">
-    <strong>compiler</strong>
-    <p>在线编写并运行 Python 代码。</p>
-    <div class="tag">代码练习</div>
-  </a>
-
-  <a href="notes.html" class="module">
-    <strong>python 复习笔记</strong>
-    <p>查看课程笔记与考点总结。</p>
-    <div class="tag">学习资料</div>
-  </a>
-
-  <a href="pastpaper.html" class="module">
-    <strong>pastpaper</strong>
-    <p>练习历年试卷与特题。</p>
-    <div class="tag">测试练习</div>
-  </a>
-
-  <div class="module">
-    <strong>（第0个内容）</strong>
-    <p>更多精彩内容敬请期待！</p>
-    <div class="tag">coming soon</div>
-  </div>
-</div>
-
-
-  <footer>© 2026 INFO1110 TAKAHIRO</footer>
-
-  <script>
-    // 主题切换
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-    }
-
-    // 颜色切换
-    function changeAccentColor() {
-      const colors = ['#00bfa5', '#007acc', '#ff4081', '#ffa000', '#9c27b0'];
-      const current = getComputedStyle(document.body).getPropertyValue('--accent-color').trim();
-      const index = (colors.indexOf(current) + 1) % colors.length;
-      document.body.style.setProperty('--accent-color', colors[index]);
-    }
-
-    // 字体切换
-    function changeFontFamily() {
-      const selected = document.getElementById("fontSelect").value;
-      document.body.style.setProperty('--font-family', selected);
-    }
-  </script>
+  <!-- 你的脚本 -->
+  <script src="script.js"></script>
 </body>
 </html>
