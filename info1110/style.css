@@ -1,13 +1,11 @@
-/* --- INFO1110 学习中心程序员风格主题 --- */
-/* 可切换暗色 / 亮色模式，字体颜色可自定义 */
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Fira+Code:wght@400;500&display=swap');
 
+/* 默认主题变量（亮色） */
 :root {
   --bg-color: #ffffff;
   --text-color: #333333;
   --accent-color: #007acc;
-  --card-bg: #f4f4f4;
+  --card-bg: #f5f5f5;
   --card-border: #dcdcdc;
   --font-family: 'JetBrains Mono', monospace;
 }
@@ -21,7 +19,7 @@ body.dark {
   --card-border: #2d2d30;
 }
 
-/* 通用样式 */
+/* 基本布局 */
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -29,61 +27,23 @@ body {
   margin: 0;
   padding: 40px;
   line-height: 1.6;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 h1 {
   text-align: center;
   color: var(--accent-color);
-  font-weight: 600;
   letter-spacing: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+  font-weight: 600;
 }
 
-table {
-  width: 80%;
-  margin: 0 auto;
-  border-spacing: 20px;
-}
-
-td {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-}
-
-td:hover {
-  background-color: var(--accent-color);
-  color: #fff;
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px var(--accent-color);
-}
-
-strong {
-  color: var(--accent-color);
-  font-size: 1.2em;
-  display: block;
-  margin-bottom: 10px;
-}
-
-footer {
-  text-align: center;
-  color: #888;
-  font-size: 0.9em;
-  margin-top: 50px;
-}
-
-/* 顶部控制区 */
 .controls {
   text-align: center;
   margin-bottom: 30px;
 }
 
-button {
+button, select {
   font-family: var(--font-family);
   font-size: 14px;
   margin: 5px;
@@ -95,8 +55,70 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
-button:hover {
+button:hover, select:hover {
   background-color: var(--accent-color);
   color: #fff;
 }
+
+/* 模块卡片容器 */
+.modules {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* 单个模块卡片样式 */
+.module {
+  width: 260px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.module:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 5px 18px var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* 模块标题 */
+.module strong {
+  display: block;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+/* 模块描述 */
+.module p {
+  font-size: 0.95em;
+  margin: 10px 0 15px 0;
+}
+
+/* 模块底标签 */
+.tag {
+  display: inline-block;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: var(--accent-color);
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-top: 5px;
+  letter-spacing: 0.5px;
+}
+
+/* 页脚 */
+footer {
+  text-align: center;
+  color: #888;
+  font-size: 0.85em;
+  margin-top: 45px;
+}
+
