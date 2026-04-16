@@ -12,14 +12,56 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
-    body { font-family: sans-serif; padding: 20px; background: #1e1e1e; color: #fff; }
-    pre { background: #2d2d2d; padding: 10px; border-radius: 6px; overflow-x: auto; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #1e1e1e;
+      color: #fff;
+    }
+
+    pre {
+      background: #2d2d2d;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    /* 按钮样式 */
+    .back-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+    .back-button:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
+  <!-- 回到主界面的按钮 -->
+  <button class="back-button" onclick="goHome()">🏠 回到主界面</button>
+
   <div id="notesContainer">加载中，请稍候...</div>
 
   <!-- 你的脚本 -->
   <script src="script.js"></script>
+
+  <script>
+    // 按钮操作：跳转到主界面
+    function goHome() {
+      // 如果你的网站主页就是根目录
+      window.location.href = '/';
+      // 或者，如果主页是 index.html：
+      // window.location.href = 'index.html';
+    }
+  </script>
 </body>
 </html>
