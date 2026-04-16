@@ -1,7 +1,7 @@
 // =============== Markdown 加载与渲染 =================
 async function loadNote() {
   try {
-    const response = await fetch('notes/example.md'); // 改成你的笔记路径
+    const response = await fetch('https://takalahiro-note.github.io/info1110/notes.md'); // 改成你的笔记路径
     const text = await response.text();
     renderMarkdown(text);
   } catch (error) {
