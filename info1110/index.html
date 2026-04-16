@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INFO1110 学习中心</title>
+  <link rel="stylesheet" href="css/info1110.css">
+  <style>
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .menu-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .menu-item a {
+      font-size: 1.1em;
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<h1>INFO1110 学习中心</h1>
+<p>欢迎来到 INFO1110 ，请选择以下模块：</p>
+
+<div class="menu">
+  <div class="menu-item">
+    <a href="compiler.html">compiler</a>
+    <p>在线编写并运行 Python 代码。</p>
+  </div>
+
+  <div class="menu-item">
+    <a href="review.html"> python 复习笔记</a>
+    <p>查看课程笔记与考点总结。</p>
+  </div>
+
+  <div class="menu-item">
+    <a href="exam.html"> pastpaper</a>
+    <p>练习历年试卷与样题</p>
+  </div>
+
+  <div class="menu-item">
+    <a href="XXXX.html"> （第4个内容）</a>
+    <p>coming soon</p>
+  </div>
+</div>
+
+<footer style="margin-top:4rem; text-align:center; color:#666;">
+  © 2026 INFO1110 TAKAHIRO
+</footer>
+
+</body>
+</html>
