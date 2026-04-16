@@ -3,20 +3,19 @@
 // ==========================
 async function loadNote() {
   try {
-    // 直接加载本目录下的 notes.md
-    const response = await fetch("notes.md");
+    // 注意这里的路径 — 你的网站根已经带有 TAKALAHIRO_note.github.io/
+    const response = await fetch("TAKALAHIRO_note.github.io/info1110/notes.md");
+    
+    if (!response.ok) throw new Error("无法加载笔记文件");
 
-    if (!response.ok) {
-      throw new Error("无法加载 notes.md");
-    }
-
-    const mdText = await response.text();
-    document.getElementById("note-content").innerHTML = marked.parse(mdText);
+    const text = await response.text();
+    document.getElementById("note-content").innerHTML = marked.parse(text);
   } catch (err) {
     console.error(err);
-    document.getElementById("note-content").innerHTML = "❌ 笔记加载失败，请检查文件路径。";
+    document.getElementById("note-content").innerHTML = "❌ 加载失败，请检查路径或文件名。";
   }
 }
+
 
 
 
