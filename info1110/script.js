@@ -1,64 +1,45 @@
-// script.js — 加载 Markdown 并自动生成左侧目录
+@@ -0,0 +1,44 @@
+// script.js — 自动加载并渲染 Markdown 文件
 
 window.addEventListener("DOMContentLoaded", loadMarkdownNote);
 
 async function loadMarkdownNote() {
-  const contentArea = document.getElementById("notesContainer");
-  const tocArea = document.getElementById("tocContainer"); // 左侧目录区域
+  const container = document.getElementById("notesContainer");
 
   try {
-    // 读取 Markdown 笔记文件
+    // 加载 /info1110/notes.md 文件
     const response = await fetch("notes.md");
-    if (!response.ok) throw new Error(`加载失败: ${response.status}`);
+
+    if (!response.ok) {
+      throw new Error(`加载失败，HTTP状态码: ${response.status}`);
+    }
+
     const mdText = await response.text();
 
-    // 用 marked 转换 Markdown 为 HTML
+    // 使用 marked 把 Markdown 转换成 HTML
     const htmlContent = marked.parse(mdText, {
       highlight: (code, lang) => {
-    hljs.getLanguage(lang)
-        ? hljs.highlight(code, { language: lang }).value
-        : hljs.highlightAuto(code).value;
-}
-
-}
-
-}
-
+        if (hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        } else {
+          return hljs.highlightAuto(code).value;
+        }
+      }
     });
 
-    contentArea.innerHTML = htmlContent;
+    // 显示到页面
+    container.innerHTML = htmlContent;
+
+    // 代码高亮
     hljs.highlightAll();
 
-    // 自动生成目录 👇
-    generateTOC(contentArea, tocArea);
-
   } catch (err) {
-    contentArea.innerHTML = `
-      <p style="color:red;">❌ 加载失败: ${err.message}</p>
-      <p>请确认 <b>notes.md</b> 文件是否存在于当前目录。</p>`;
+    container.innerHTML = `
+      <p style="color:red;">
+        ❌ 发生错误: ${err.message}<br>
+        请确认文件 <code>notes.md</code> 是否存在于同目录。
+      </p>
+    `;
     console.error(err);
   }
 }
-
-/**
- * 自动生成左侧目录
- * @param {HTMLElement} contentArea - 笔记内容区域
- * @param {HTMLElement} tocArea - 目录显示区域
- 
- */
-
-
-function generateTOC(contentArea, tocArea) {
-  if (!contentArea || !tocArea) return;
-
-  const headings = contentArea.querySelectorAll("h1, h2, h3, h4, h5, h6");
-  if (!headings.length) {
-    tocArea.innerHTML = "<p>⚠️ 暂无可生成的标题。</p>";
-    return;
-  }
-
-  let tocHTML = '<h2>📜 目录</h2><ul class="toc-list">';
-
-  headings.forEach((heading, index) => {
-    // 生成安全的锚点 ID：处理中文、空格、特殊符号
-    const anchorId = heading.text
