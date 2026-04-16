@@ -1,0 +1,125 @@
+:root {
+  --bg: #fafafa;
+  --text: #222;
+  --link: #0066cc;
+  --code-bg: #f5f5f5;
+  --border: #ddd;
+  --heading-color: #1a1a1a;
+  --blockquote-bg: #fefefe;
+  --blockquote-border: #ccc;
+  --font-mono: 'Fira Code', 'Consolas', 'Courier New', monospace;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.3em;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0.8em 0;
+}
+
+ul, ol {
+  margin-left: 2rem;
+}
+
+pre, code {
+  font-family: var(--font-mono);
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+blockquote {
+  background: var(--blockquote-bg);
+  border-left: 4px solid var(--blockquote-border);
+  margin: 1.2em 0;
+  padding: 0.8em 1em;
+  color: #555;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  width: 100%;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6em 1em;
+}
+th {
+  background: #f2f2f2;
+  font-weight: 600;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 1em auto;
+}
+
+/* 隐藏原始Markdown导出中的多余元素 */
+html::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 5px;
+}
+
+/* 超宽代码块自动换行 */
+pre code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* 调整表格标题居中 */
+thead th {
+  text-align: center;
+}
