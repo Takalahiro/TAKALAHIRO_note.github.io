@@ -1,21 +1,46 @@
+// ==========================
+// 1. 加载 Markdown 文件并渲染
+// ==========================
+async function loadMarkdown(path) {
+  try {
+    const response = await fetch(path);
+    const mdText = await response.text();
+    const htmlContent = marked.parse(mdText);
+    document.getElementById('note-content').innerHTML = htmlContent;
+    enhancePage();
+  } catch (err) {
+    document.getElementById('note-content').innerHTML = "<p>❌ 加载笔记失败...</p>";
+    console.error(err);
+  }
+}
+
+// ==========================
+// 2. 生成目录、书签、高亮功能
+// ==========================
+function enhancePage() {
+  generateTOC();
+  restoreBookmark();
+  enableHighlight();
+}
+
 // 自动生成目录
 function generateTOC() {
+  const content = document.getElementById('note-content');
   const toc = document.getElementById('toc');
-  const headings = document.querySelectorAll('.note-content h2, .note-content h3');
+  const headings = content.querySelectorAll('h2, h3, h4');
   toc.innerHTML = '';
 
   headings.forEach(h => {
     const id = h.id || h.textContent.trim().replace(/\s+/g, '-').toLowerCase();
     h.id = id;
-
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = `#${id}`;
-    a.textContent = h.textContent.replace('🏷️', '').trim();
+    a.textContent = h.textContent.trim();
     li.appendChild(a);
     toc.appendChild(li);
 
-    // 添加书签图标
+    // 加书签图标
     const icon = document.createElement('span');
     icon.textContent = '🔖';
     icon.className = 'bookmark-icon';
@@ -36,9 +61,9 @@ function toggleBookmark(id, icon) {
   }
 }
 
-// 页面加载时跳转到保存的书签
+// 恢复书签
 function restoreBookmark() {
-  const saved = JSON.parse(localStorage.getItem('bookmark')) || null;
+  const saved = JSON.parse(localStorage.getItem('bookmark'));
   if (saved) {
     const target = document.getElementById(saved);
     if (target) target.scrollIntoView({ behavior: 'smooth' });
@@ -47,7 +72,7 @@ function restoreBookmark() {
   }
 }
 
-// 高亮功能
+// 高亮选中内容
 function enableHighlight() {
   document.addEventListener('mouseup', () => {
     const selection = window.getSelection();
@@ -71,17 +96,18 @@ function saveHighlights() {
   localStorage.setItem('highlights', container.innerHTML);
 }
 
-// 恢复高亮
+// 恢复高亮内容
 function restoreHighlights() {
-  const container = document.getElementById('note-container');
   const saved = localStorage.getItem('highlights');
-  if (saved) container.innerHTML = saved;
+  if (saved) {
+    document.getElementById('note-container').innerHTML = saved;
+    enhancePage(); // 重新生成目录
+  }
 }
 
-// 初始化
+// 页面加载时执行
 window.onload = () => {
   restoreHighlights();
-  generateTOC();
-  restoreBookmark();
-  enableHighlight();
+  loadMarkdown('notes.md'); // 👈 这里是要读取的文件
 };
+
