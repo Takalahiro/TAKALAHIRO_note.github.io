@@ -1,44 +1,46 @@
-/* =========================
-   现代化笔记排版与主题系统
-   ========================= */
+/* ================================
+   毛玻璃风格主题 + 视觉升级版
+   ================================ */
 
-/* ---------- 全局变量 ---------- */
+/* 全局变量 */
 :root {
-  --bg-color: #f8f9fa;
+  --bg-color: #f0f2f5;
   --text-color: #222;
-  --card-bg: #ffffff;
-  --accent-color: #007bff;
-  --code-bg: #f3f4f7;
-  --border-color: #ddd;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --accent-color: #3b82f6;
+  --border-color: rgba(255, 255, 255, 0.3);
+  --glass-blur: 14px;
 
   --font-main: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Merriweather", Georgia, serif;
   --font-mono: "Fira Code", "Consolas", monospace;
 }
 
-/* ---------- 暗色模式 ---------- */
+/* 暗色模式 */
 body.dark-mode {
-  --bg-color: #161b22;
+  --bg-color: #0d1117;
   --text-color: #e6edf3;
-  --card-bg: #21262d;
+  --card-bg: rgba(33, 38, 45, 0.55);
   --accent-color: #58a6ff;
-  --code-bg: #0d1117;
-  --border-color: #30363d;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --glass-blur: 20px;
 }
 
-/* ---------- 页面布局 ---------- */
+/* 全局样式 */
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-color);
+  background: var(--bg-color);
   color: var(--text-color);
   margin: 0;
   padding: 0;
+  backdrop-filter: blur(var(--glass-blur));
   transition: background-color 0.4s, color 0.4s;
 }
 
 header {
   text-align: center;
   padding: 30px 0 10px;
+  backdrop-filter: blur(var(--glass-blur));
 }
 
 .subtitle {
@@ -47,7 +49,7 @@ header {
   opacity: 0.7;
 }
 
-/* ---------- 主体布局 ---------- */
+/* 卡片布局 */
 .note-layout {
   display: flex;
   flex-wrap: wrap;
@@ -60,15 +62,21 @@ header {
   flex: 3;
   max-width: 850px;
   background-color: var(--card-bg);
-  border-radius: 12px;
+  border-radius: 15px;
   padding: 25px 35px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
   overflow-wrap: break-word;
   line-height: 1.75;
+  backdrop-filter: blur(var(--glass-blur));
+  animation: fadeIn 0.5s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Markdown 样式 ---------- */
+/* Markdown 样式 */
 #note-content h1, #note-content h2, #note-content h3 {
   border-bottom: 1px solid var(--accent-color);
   padding-bottom: 4px;
@@ -76,21 +84,16 @@ header {
 }
 #note-content h2 { font-size: 1.5em; }
 #note-content h3 { font-size: 1.25em; }
-
-#note-content p {
-  margin: 10px 0;
-}
+#note-content p { margin: 10px 0; }
 
 #note-content a {
   color: var(--accent-color);
   text-decoration: none;
 }
-#note-content a:hover {
-  text-decoration: underline;
-}
+#note-content a:hover { text-decoration: underline; }
 
 #note-content code {
-  background-color: var(--code-bg);
+  background-color: rgba(0,0,0,0.05);
   padding: 3px 6px;
   border-radius: 4px;
   font-family: var(--font-mono);
@@ -99,53 +102,64 @@ header {
 pre code {
   display: block;
   padding: 1em;
-  background-color: var(--code-bg);
-  border-radius: 6px;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 8px;
   overflow-x: auto;
 }
 
-/* ---------- 侧边目录 ---------- */
+/* 侧边目录玻璃风格 */
 .sidebar {
   flex: 1;
-  max-width: 250px;
+  max-width: 280px;
   background-color: var(--card-bg);
-  border-radius: 12px;
+  border-radius: 15px;
   padding: 20px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
   position: sticky;
   top: 25px;
   height: fit-content;
   font-size: 15px;
+  backdrop-filter: blur(var(--glass-blur));
 }
-
 .sidebar h3 {
   margin-top: 0;
   font-size: 16px;
   border-bottom: 2px solid var(--accent-color);
 }
-
 .sidebar ul {
   list-style: none;
-  padding: 0;
+  padding-left: 10px;
 }
-
 .sidebar li {
-  margin: 8px 0;
+  margin: 6px 0;
+  cursor: pointer;
 }
-.sidebar a {
-  text-decoration: none;
-  color: var(--text-color);
-  transition: 0.2s;
-}
-.sidebar a:hover {
+.sidebar li.collapsible {
+  font-weight: 600;
   color: var(--accent-color);
 }
+.sidebar li ul {
+  display: none;
+  margin-left: 15px;
+}
+.sidebar li.open ul {
+  display: block;
+}
 
-/* ---------- 工具栏 ---------- */
+/* 工具栏与搜索框 */
 .toolbar {
   text-align: center;
   margin: 15px 0;
+}
+.toolbar input[type="text"] {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  width: 220px;
+  backdrop-filter: blur(10px);
 }
 .toolbar button {
   background-color: var(--accent-color);
@@ -159,10 +173,9 @@ pre code {
   font-size: 14px;
 }
 .toolbar button:hover {
-  background-color: #0056b3;
+  background-color: #2563eb;
 }
 
-/* ---------- 其他 ---------- */
 footer {
   text-align: center;
   padding: 15px;
@@ -175,7 +188,6 @@ footer {
   border-radius: 3px;
   padding: 0 2px;
 }
-
 .bookmark-icon {
   font-size: 0.9em;
   color: #999;
