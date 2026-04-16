@@ -2,7 +2,7 @@ window.addEventListener("load", loadMarkdownNote);
 
 async function loadMarkdownNote() {
   const notesContainer = document.getElementById("notesContainer");
-  const mdUrl = "https://raw.githubusercontent.com/takalahiro/TAKALAHIRO_note.github.io/main/info1110/notes.md";
+ const mdUrl = "https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md";
 
 
   try {
