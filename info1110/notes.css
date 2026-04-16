@@ -1,44 +1,89 @@
-.note-layout {
+/* ==== 页面基础样式 ==== */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f7f7f7;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* 表单样式 */
+form {
   display: flex;
-  gap: 30px;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.note-container {
-  flex: 3;
-  max-width: 850px;
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  padding: 25px 35px;
-  border: 1px solid var(--card-border);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  overflow-wrap: break-word;
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
-.sidebar {
-  flex: 1;
-  max-width: 250px;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 50px;
-  height: fit-content;
-}
-
-.highlight {
-  background-color: #fff176;
-  border-radius: 3px;
-  padding: 0 2px;
-}
-
-.bookmark-icon {
-  font-size: 0.8em;
-  color: #999;
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  margin-left: 5px;
+  font-size: 14px;
 }
-.bookmark-icon.active {
-  color: var(--accent-color);
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* 笔记卡片样式 */
+.note {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #fafafa;
+  position: relative;
+}
+
+.note h3 {
+  margin: 0 0 5px 0;
+  color: #222;
+}
+
+.note p {
+  margin: 0;
+  color: #555;
+  white-space: pre-wrap;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background: #a71d2a;
 }
