@@ -1,7 +1,59 @@
+/* =========================
+   现代化笔记排版与主题系统
+   ========================= */
+
+/* ---------- 全局变量 ---------- */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #222;
+  --card-bg: #ffffff;
+  --accent-color: #007bff;
+  --code-bg: #f3f4f7;
+  --border-color: #ddd;
+
+  --font-main: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Merriweather", Georgia, serif;
+  --font-mono: "Fira Code", "Consolas", monospace;
+}
+
+/* ---------- 暗色模式 ---------- */
+body.dark-mode {
+  --bg-color: #161b22;
+  --text-color: #e6edf3;
+  --card-bg: #21262d;
+  --accent-color: #58a6ff;
+  --code-bg: #0d1117;
+  --border-color: #30363d;
+}
+
+/* ---------- 页面布局 ---------- */
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+header {
+  text-align: center;
+  padding: 30px 0 10px;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* ---------- 主体布局 ---------- */
 .note-layout {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 30px;
+  padding: 25px;
 }
 
 .note-container {
@@ -10,31 +62,122 @@
   background-color: var(--card-bg);
   border-radius: 12px;
   padding: 25px 35px;
-  border: 1px solid var(--card-border);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   overflow-wrap: break-word;
+  line-height: 1.75;
 }
 
+/* ---------- Markdown 样式 ---------- */
+#note-content h1, #note-content h2, #note-content h3 {
+  border-bottom: 1px solid var(--accent-color);
+  padding-bottom: 4px;
+  margin-top: 30px;
+}
+#note-content h2 { font-size: 1.5em; }
+#note-content h3 { font-size: 1.25em; }
+
+#note-content p {
+  margin: 10px 0;
+}
+
+#note-content a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+#note-content a:hover {
+  text-decoration: underline;
+}
+
+#note-content code {
+  background-color: var(--code-bg);
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+}
+
+pre code {
+  display: block;
+  padding: 1em;
+  background-color: var(--code-bg);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+/* ---------- 侧边目录 ---------- */
 .sidebar {
   flex: 1;
   max-width: 250px;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   position: sticky;
-  top: 50px;
+  top: 25px;
   height: fit-content;
+  font-size: 15px;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 16px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 8px 0;
+}
+.sidebar a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: 0.2s;
+}
+.sidebar a:hover {
+  color: var(--accent-color);
+}
+
+/* ---------- 工具栏 ---------- */
+.toolbar {
+  text-align: center;
+  margin: 15px 0;
+}
+.toolbar button {
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 8px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+.toolbar button:hover {
+  background-color: #0056b3;
+}
+
+/* ---------- 其他 ---------- */
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  opacity: 0.6;
 }
 
 .highlight {
-  background-color: #fff176;
+  background-color: #ffed70;
   border-radius: 3px;
   padding: 0 2px;
 }
 
 .bookmark-icon {
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #999;
   cursor: pointer;
   margin-left: 5px;
@@ -42,4 +185,3 @@
 .bookmark-icon.active {
   color: var(--accent-color);
 }
-
