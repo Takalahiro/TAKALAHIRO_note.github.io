@@ -1,65 +1,26 @@
-window.addEventListener("load", loadMarkdownNotes);
+window.addEventListener("load", loadMarkdownNote);
 
-let notes = [];
-const notesContainer = document.getElementById("notesContainer");
+async function loadMarkdownNote() {
+  const notesContainer = document.getElementById("notesContainer");
+  const mdUrl = "https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md";
 
-// 修改这里：替换为你的 GitHub 用户名和仓库信息
-const GITHUB_USER = "你的用户名";            // 👈 改：你的 GitHub 用户名
-const REPO_NAME = "notes";                   // 👈 改：仓库名
-const BRANCH_NAME = "main";                  // 👈 改：分支名，如 main 或 master
+  try {
+    const response = await fetch(mdUrl);
+    if (!response.ok) throw new Error(`无法加载：${response.status}`);
+    const mdText = await response.text();
 
-// 如果你知道要显示哪些 Markdown 文件，可以列出来：
-const mdFiles = [
-  "note1.md",
-  "note2.md"
-];
+    // 使用 marked.js 转换为 HTML
+    const htmlContent = marked.parse(mdText);
 
-// 构造原始文件URL
-function getRawUrl(fileName) {
-  return `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH_NAME}/markdowns/${fileName}`;
-}
-
-async function loadMarkdownNotes() {
-  for (const file of mdFiles) {
-    try {
-      const url = getRawUrl(file);
-      const response = await fetch(url);
-      if (!response.ok) {
-        console.warn(`⚠️ 无法加载文件: ${file}`);
-        continue;
-      }
-      const mdText = await response.text();
-      const htmlContent = marked.parse(mdText);
-      const title = file.replace(".md", "");
-
-      notes.push({
-        title,
-        content: htmlContent,
-        date: new Date().toLocaleString()
-      });
-    } catch (err) {
-      console.error(`❌ 读取失败 ${file}`, err);
-    }
-  }
-
-  renderNotes();
-}
-
-function renderNotes() {
-  notesContainer.innerHTML = "";
-  if (notes.length === 0) {
-    notesContainer.innerHTML = "<p>暂无 Markdown 内容。</p>";
-    return;
-  }
-  notes.forEach((n) => {
-    const div = document.createElement("div");
-    div.className = "note";
-    div.innerHTML = `
-      <h3>${n.title}</h3>
-      <div>${n.content}</div>
-      <small style="color:#999;">${n.date}</small>
+    notesContainer.innerHTML = `
+      <div class="note">
+        <h2>📘 info1110 / notes.md</h2>
+        <div>${htmlContent}</div>
+        <small style="color:#999;">加载自 ${mdUrl}</small>
+      </div>
     `;
-    notesContainer.appendChild(div);
-  });
+  } catch (err) {
+    notesContainer.innerHTML = `<p style="color:red;">加载失败：${err.message}</p>`;
+  }
 }
 
