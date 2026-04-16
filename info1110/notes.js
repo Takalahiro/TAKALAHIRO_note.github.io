@@ -1,24 +1,15 @@
-window.addEventListener("load", loadMarkdownNote);
+document.addEventListener("DOMContentLoaded", () => {
+  // 点击标题返回顶部
+  const headerTitle = document.querySelector("header h1");
+  headerTitle.style.cursor = "pointer";
+  headerTitle.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 
-async function loadMarkdownNote() {
-  const notesContainer = document.getElementById("notesContainer");
- const mdUrl = "https://takalahiro.github.io/TAKALAHIRO_note.github.io/info1110/notes.md";
-
-
-  try {
-    const response = await fetch(mdUrl);
-    if (!response.ok) throw new Error(`无法加载：${response.status}`);
-    const mdText = await response.text();
-
-    // 使用 marked.js 转换为 HTML
-    const htmlContent = marked.parse(mdText);
-
-    notesContainer.innerHTML = `
-      <div class="note">
-        <h2>📘 info1110 / notes.md</h2>
-        <div>${htmlContent}</div>
-        <small style="color:#999;">加载自 ${mdUrl}</small>
-      </div>
-    `;
-  } catch (err) {
-    notesContainer.innerHTML = `<p style="color:red;">加载失败：${err.message}</p>`
+  // 页面淡入动画
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    document.body.style.transition = "opacity 1s ease-in";
+    document.body.style.opacity = "1";
+  }, 50);
+});
