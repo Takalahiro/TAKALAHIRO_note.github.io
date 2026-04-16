@@ -2,33 +2,14 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Python学习笔记 | info1110</title>
-
-  <!-- 字体 & 样式 -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Markdown 转换 & 代码高亮 -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-  <script src="script.js" defer></script>
+  <title>Markdown 渲染</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.css">
 </head>
 <body>
-  <div class="background"></div>
-  <header class="glass-header">
-    <h1> Python学习笔记</h1>
-  </header>
+  <div id="notesContainer">正在加载 Markdown...</div>
 
-  <main class="glass-card">
-    <div id="notesContainer">加载中，请稍候...</div>
-  </main>
-
-  <footer class="glass-footer">
-    <p>© 2026 Takalahiro | info1110 Python笔记</p>
-  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/marked@5.1.1/lib/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
