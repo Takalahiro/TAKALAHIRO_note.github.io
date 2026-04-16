@@ -2,14 +2,56 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>Markdown 渲染</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markdown 阅读器</title>
+
+  <!-- 引入代码高亮样式（GitHub风格） -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+
+  <style>
+    body {
+      font-family: "Segoe UI", Helvetica, sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      line-height: 1.7;
+      margin: 2rem;
+    }
+
+    h1, h2, h3, h4 {
+      color: #58a6ff;
+    }
+
+    pre {
+      background: #161b22;
+      padding: 1em;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: "Fira Code", monospace;
+    }
+
+    #notesContainer {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div id="notesContainer">正在加载 Markdown...</div>
+  <div id="notesContainer">⏳ 正在加载 Markdown...</div>
 
+  <!-- Markdown 解析库 -->
   <script src="https://cdn.jsdelivr.net/npm/marked@5.1.1/lib/marked.min.js"></script>
+  <!-- highlight.js -->
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+  <!-- 你的脚本文件 -->
   <script src="script.js"></script>
 </body>
 </html>
