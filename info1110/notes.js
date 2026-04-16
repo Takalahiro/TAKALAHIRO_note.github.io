@@ -108,6 +108,6 @@ function restoreHighlights() {
 // 页面加载时执行
 window.onload = () => {
   restoreHighlights();
-  loadMarkdown('notes.md'); // 👈 这里是要读取的文件
+  loadMarkdown('https://raw.githubusercontent.com/TAKALAHIRO_note.github.io/info1110/notes.md');
 };
 
