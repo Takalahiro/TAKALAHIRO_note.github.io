@@ -2,104 +2,24 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>PYTHON</title>
+  <title>我的笔记</title>
+
+  <!-- Highlight.js 样式与脚本 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
   <!-- marked.js Markdown 解析器 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- Highlight.js（可选语法高亮） -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-  <!-- 引入你的主样式 -->
-  <link rel="stylesheet" href="style.css">
-
   <style>
-    /* === 页面居中布局与容器 === */
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 900px;
-      width: 90%;
-      margin: 40px auto;
-      padding: 30px;
-      background: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      border-radius: 12px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    /* === 悬浮按钮样式 === */
-    .floating-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      padding: 12px 18px;
-      background-color: #0066cc;
-      color: white;
-      font-size: 16px;
-      font-weight: 500;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      z-index: 1000;
-    }
-
-    .floating-button:hover {
-      background-color: #004999;
-      transform: scale(1.05);
-    }
-
-    footer {
-      text-align: center;
-      color: #666;
-      font-size: 14px;
-      padding: 15px 0;
-    }
+    body { font-family: sans-serif; padding: 20px; background: #1e1e1e; color: #fff; }
+    pre { background: #2d2d2d; padding: 10px; border-radius: 6px; overflow-x: auto; }
   </style>
 </head>
 <body>
+  <div id="notesContainer">加载中，请稍候...</div>
 
-  <div class="container">
-    <h1>📚 我的笔记</h1>
-    <div id="notesContainer" class="note">加载中，请稍候...</div>
-  </div>
-
-  <footer>© 2026 我的笔记平台</footer>
-
-  <!-- 悬浮按钮 -->
-  <button class="floating-button" onclick="toggleAction()">菜单 ↕</button>
-
+  <!-- 你的脚本 -->
   <script src="script.js"></script>
-  <script>
-    // 按钮切换操作：返回菜单或回到顶部
-    function toggleAction() {
-      const scrollY = window.scrollY;
-      if (scrollY > 300) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        window.location.href = 'index.html'; // 修改为你的主页路径
-      }
-    }
-  </script>
-
 </body>
 </html>
