@@ -146,6 +146,15 @@ pre code {
 .sidebar li.open ul {
   display: block;
 }
+.sidebar a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+.sidebar a:hover {
+  color: var(--accent-color);
+}
+
+}
 
 /* 工具栏与搜索框 */
 .toolbar {
