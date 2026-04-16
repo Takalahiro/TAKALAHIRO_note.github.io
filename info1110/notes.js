@@ -3,33 +3,30 @@
 // ==========================
 async function loadNote() {
   try {
-    // 从 URL 参数读取文件名，例如 ?file=python.md
     const params = new URLSearchParams(window.location.search);
-    const file = params.get('file') || 'example.md';
+    const file = params.get("file") || "info1110/notes.md"; // 默认从 info1110 加载
 
-    // 自动判断相对路径（适用于你的 GitHub Pages）
-    const response = await fetch(`notes/${file}`);
+    // 构造正确的完整路径（兼容仓库名）
+    const basePath = window.location.origin + "/TAKALAHIRO_note.github.io/";
+    const url = basePath + file;
 
-    if (!response.ok) {
-      throw new Error(`无法加载笔记: ${file}`);
-    }
+    console.log("正在加载笔记：", url);
 
-    const mdText = await response.text();
-    const contentDiv = document.getElementById('note-content');
+    const response = await fetch(url);
 
-    if (!window.marked) {
-      contentDiv.innerHTML = '❌ Markdown 渲染库未加载, 请检查是否包含 marked.min.js';
-      return;
-    }
+    if (!response.ok) throw new Error("无法加载笔记：" + url);
+    const text = await response.text();
 
-    contentDiv.innerHTML = marked.parse(mdText);
+    document.getElementById("note-content").innerHTML = marked.parse(text);
     generateTOC();
 
   } catch (error) {
-    console.error(error);
-    document.getElementById('note-content').innerText = '❌ 笔记加载失败，请检查路径或文件名';
+    console.error("加载失败：", error);
+    document.getElementById("note-content").innerText =
+      "❌ 加载笔记失败，请检查文件路径是否存在。";
   }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   loadNote();
