@@ -1,37 +1,1538 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>INFO1110 - Python 笔记</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="notes.css">
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title># Python学习笔记</title>
 </head>
-<body>
-  <header>
-    <h1># Python 复习笔记</h1>
-    <p class="subtitle">INFO1110 学习中心 · TAKAHIRO</p>
-  </header>
+<body><h1 id='python学习笔记'>Python学习笔记</h1>
+<h2 id='chapter-1data-type--operators'>Chapter 1：Data type &amp; Operators</h2>
+<hr />
+<h2 id='1--data-types-数据类型'>1 , Data Types 数据类型</h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>类型名称</th><th>英文名</th><th>示例值</th><th>说明</th></tr></thead>
+<tbody><tr><td>整数</td><td><code>int</code></td><td><code>1, 0, -5, 2024</code></td><td>不带小数点的数</td></tr><tr><td>浮点数</td><td><code>float</code></td><td><code>3.14, -2.0, 0.5</code></td><td>带有小数点的数</td></tr><tr><td>字符串</td><td><code>str</code></td><td><code>&quot;hello&quot;</code>, <code>&#39;Python&#39;</code>, <code>&quot;123&quot;</code></td><td>一串文字或符号，用引号包围</td></tr><tr><td>布尔值</td><td><code>bool</code></td><td><code>True</code>, <code>False</code></td><td>逻辑真假，用于条件判断</td></tr><tr><td>列表</td><td><code>list</code></td><td><code>[1, 2, 3]</code>, <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</code></td><td>有序、可修改的一组数据</td></tr><tr><td>元组</td><td><code>tuple</code></td><td><code>(1, 2, 3)</code></td><td>有序、不可修改的数据集合</td></tr><tr><td>集合</td><td><code>set</code></td><td><code>{1, 2, 3}</code>, <code>{&quot;apple&quot;, &quot;banana&quot;}</code></td><td>无序、元素不重复</td></tr><tr><td>字典</td><td><code>dict</code></td><td><code>{&quot;name&quot;:&quot;Tom&quot;, &quot;age&quot;:18}</code></td><td>键值对形式的数据结构</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='2--查看数据类型'>2 , 查看数据类型</h2>
+<p>在 Python 中，可以使用 <code>type()</code> 来查看变量的类型：</p>
+<pre><code class='language-python' lang='python'>a = 10
+b = 3.14
+c = &quot;Python&quot;
+d = [1, 2, 3]
 
-  <nav>
-    <a href="index.html">🏠 返回主页</a>
-  </nav>
+print(type(a))  # &lt;class &#39;int&#39;&gt;
+print(type(b))  # &lt;class &#39;float&#39;&gt;
+print(type(c))  # &lt;class &#39;str&#39;&gt;
+print(type(d))  # &lt;class &#39;list&#39;&gt;
+</code></pre>
+<hr />
+<h2 id='3-type-casting-类型转换'>3 ，Type Casting 类型转换</h2>
+<pre><code class='language-python' lang='python'>x = 3.14
+y = int(x)       # 转成整数，结果=3
+z = str(x)       # 转成字符串，结果=&#39;3.14&#39;
+p = float(&quot;5&quot;)   # 转成浮点数，结果=5.0
+</code></pre>
+<p>常见转换函数：</p>
+<ul>
+<li><code>int(x)</code> → 转整数  </li>
+<li><code>float(x)</code> → 转浮点数  </li>
+<li><code>str(x)</code> → 转字符串  </li>
+<li><code>list(x)</code> → 转列表（可迭代对象）  </li>
+<li><code>bool(x)</code> → 转真假值  </li>
 
-  <main class="note-layout">
-    <div class="note-container" id="note-container">
-      <div id="note-content">正在加载笔记内容...</div>
-    </div>
+</ul>
+<hr />
+<h2 id='4--operators-符号运算'>4 ， Operators 符号运算</h2>
+<p>Python 的符号（运算符）主要分为几类：</p>
+<h3 id='1--数值运算符'>1 ， 数值运算符</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr></thead>
+<tbody><tr><td><code>+</code></td><td>加</td><td><code>3 + 2</code></td><td><code>5</code></td></tr><tr><td><code>-</code></td><td>减</td><td><code>6 - 4</code></td><td><code>2</code></td></tr><tr><td><code>*</code></td><td>乘</td><td><code>3 * 4</code></td><td><code>12</code></td></tr><tr><td><code>/</code></td><td>除</td><td><code>8 / 2</code></td><td><code>4.0</code> (结果是浮点数)</td></tr><tr><td><code>//</code></td><td>整除</td><td><code>7 // 2</code></td><td><code>3</code></td></tr><tr><td><code>%</code></td><td>取余</td><td><code>7 % 2</code></td><td><code>1</code></td></tr><tr><td><code>**</code></td><td>幂（次方）</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr></tbody>
+</table></figure>
+<p>示例：</p>
+<pre><code class='language-python' lang='python'>a = 7
+b = 2
+print(a + b)   # 9
+print(a - b)   # 5
+print(a * b)   # 14
+print(a / b)   # 3.5
+print(a // b)  # 3
+print(a % b)   # 1
+print(a ** b)  # 49
+</code></pre>
+<hr />
+<h3 id='2--比较运算符返回-true-或-false'>2 ， 比较运算符（返回 True 或 False）</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr></thead>
+<tbody><tr><td><code>==</code></td><td>相等</td><td><code>3 == 3</code></td><td>True</td></tr><tr><td><code>!=</code></td><td>不等</td><td><code>3 != 4</code></td><td>True</td></tr><tr><td><code>&gt;</code></td><td>大于</td><td><code>5 &gt; 3</code></td><td>True</td></tr><tr><td><code>&lt;</code></td><td>小于</td><td><code>2 &lt; 1</code></td><td>False</td></tr><tr><td><code>&gt;=</code></td><td>大于等于</td><td><code>5 &gt;= 5</code></td><td>True</td></tr><tr><td><code>&lt;=</code></td><td>小于等于</td><td><code>4 &lt;= 5</code></td><td>True</td></tr></tbody>
+</table></figure>
+<hr />
+<h3 id='3--逻辑运算符boolean-logic'>3 ， 逻辑运算符（Boolean Logic）</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr></thead>
+<tbody><tr><td><code>and</code></td><td>与（两个都真）</td><td><code>True and False</code></td><td>False</td></tr><tr><td><code>or</code></td><td>或（任意真则真）</td><td><code>True or False</code></td><td>True</td></tr><tr><td><code>not</code></td><td>非（取反）</td><td><code>not True</code></td><td>False</td></tr></tbody>
+</table></figure>
+<p>示例：</p>
+<pre><code class='language-python' lang='python'>x = 5
+print(x &gt; 3 and x &lt; 10)  # True
+print(x &lt; 3 or x == 5)   # True
+print(not(x == 5))       # False
+</code></pre>
+<hr />
+<h3 id='4--赋值运算符'>4 ， 赋值运算符</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>含义</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>=</code></td><td>赋值</td><td><code>x = 3</code></td></tr><tr><td><code>+=</code></td><td>增加并赋值</td><td><code>x += 2</code> → <code>x = x + 2</code></td></tr><tr><td><code>-=</code></td><td>减少并赋值</td><td><code>x -= 2</code></td></tr><tr><td><code>*=</code></td><td>乘并赋值</td><td><code>x *= 2</code></td></tr><tr><td><code>/=</code></td><td>除并赋值</td><td><code>x /= 2</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h3 id='5--成员与身份运算符'>5 ， 成员与身份运算符</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>含义</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>in</code></td><td>判断元素是否在序列中</td><td><code>&quot;a&quot; in &quot;apple&quot;</code> → True</td></tr><tr><td><code>not in</code></td><td>判断元素是否不在序列中</td><td><code>&quot;b&quot; not in &quot;apple&quot;</code> → True</td></tr><tr><td><code>is</code></td><td>判断两个对象是否是同一个（内存地址）</td><td><code>x is y</code></td></tr><tr><td><code>is not</code></td><td>判断两个对象是否不是同一个</td><td><code>x is not y</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h1 id='chapter-2-functions'>Chapter 2 ：<strong>Functions</strong></h1>
+<hr />
+<h2 id='1--函数的概念'>1 , 函数的概念</h2>
+<p><strong>函数（Function）</strong> 是一段可以被“重复执行”的代码，它用来实现某个具体功能。  </p>
+<ul>
+<li>可以减少代码重复  </li>
+<li>让程序更结构化  </li>
+<li>更易维护与理解  </li>
 
-    <aside class="sidebar">
-      <h3>📘 目录</h3>
-      <ul id="toc"></ul>
-    </aside>
-  </main>
+</ul>
+<hr />
+<h2 id='2--定义函数'>2 , 定义函数</h2>
+<p>在 Python 里使用关键字 <code>def</code> 来定义函数。  </p>
+<pre><code class='language-python' lang='python'>def 函数名(参数1, 参数2, ...):
+    函数体语句
+    return 返回值
+</code></pre>
+<h3 id='示例'>示例：</h3>
+<pre><code class='language-python' lang='python'>def greet(name):
+    print(&quot;Hello,&quot;, name)
+</code></pre>
+<p>调用：</p>
+<pre><code class='language-python' lang='python'>greet(&quot;Alice&quot;)   # 输出：Hello, Alice
+greet(&quot;Bob&quot;)     # 输出：Hello, Bob
+</code></pre>
+<hr />
+<h2 id='3--函数的调用与执行顺序'>3 , 函数的调用与执行顺序</h2>
+<p>定义只是建立函数；只有<strong>调用</strong>时才会执行：</p>
+<pre><code class='language-python' lang='python'>def hello():
+    print(&quot;Hello Python!&quot;)
 
-  <footer>
-    © 2026 INFO1110 TAKAHIRO
-  </footer>
+# 调用
+hello()     # 输出：Hello Python!
+</code></pre>
+<hr />
+<h2 id='4--参数parameters与实参arguments'>4 , 参数（Parameters）与实参（Arguments）</h2>
+<h3 id='形参定义时的占位符'>形参（定义时的占位符）</h3>
+<pre><code class='language-python' lang='python'>def add(a, b):   # a, b 是形参
+    print(a + b)
+</code></pre>
+<h3 id='实参调用时传入的值'>实参（调用时传入的值）</h3>
+<pre><code class='language-python' lang='python'>add(5, 3)   # 实参是 5 和 3
+</code></pre>
+<p>输出：</p>
+<pre><code>8
+</code></pre>
+<hr />
+<h3 id='带默认值的参数'>带默认值的参数</h3>
+<p>你可以给参数一个默认值，当调用时没有传该值，就用默认值。</p>
+<pre><code class='language-python' lang='python'>def power(base, exponent=2):
+    return base ** exponent
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="notes.js"></script>
+print(power(3))      # 默认平方 → 9
+print(power(3, 3))   # 3 的三次方 → 27
+</code></pre>
+<hr />
+<h3 id='关键字参数keyword-arguments'>关键字参数（Keyword arguments）</h3>
+<p>可以指定参数名进行调用：</p>
+<pre><code class='language-python' lang='python'>def student(name, age, major):
+    print(f&quot;{name} 的年龄是 {age}，专业是 {major}&quot;)
+
+student(age=20, name=&quot;小明&quot;, major=&quot;计算机&quot;)
+</code></pre>
+<hr />
+<h3 id='可变参数'>可变参数</h3>
+<p>有时你不确定要传多少个参数——可以用 <code>*args</code> 或 <code>**kwargs</code>。</p>
+<pre><code class='language-python' lang='python'>def show_numbers(*args):
+    for n in args:
+        print(n)
+
+show_numbers(1, 2, 3, 4)   # *args 收到多个数字
+</code></pre>
+<p><code>*args</code> 代表一个“元组形式”的参数集合。<br/><code>**kwargs</code> 可以接收多个“键=值”的关键字参数。</p>
+<pre><code class='language-python' lang='python'>def show_info(**kwargs):
+    for key, value in kwargs.items():
+        print(key, &quot;=&quot;, value)
+
+show_info(name=&quot;Tom&quot;, age=18, country=&quot;China&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>name = Tom  
+age = 18  
+country = China
+</code></pre>
+<hr />
+<h2 id='5--返回值return'>5 , 返回值（Return）</h2>
+<p>如果函数需要给调用者一个结果，用 <code>return</code> 返回。</p>
+<pre><code class='language-python' lang='python'>def add(a, b):
+    return a + b
+
+s = add(3, 5)
+print(s)   # 输出 8
+</code></pre>
+<blockquote><p><code>return</code> 语句一旦执行，函数立即结束。</p>
+</blockquote>
+<p>如果没有写 <code>return</code>，默认返回 <code>None</code>。</p>
+<pre><code class='language-python' lang='python'>def say_hello():
+    print(&quot;Hi!&quot;)
+
+x = say_hello()
+print(x)   # 输出 None
+</code></pre>
+<hr />
+<h2 id='6--局部变量与全局变量'>6 , 局部变量与全局变量</h2>
+<h3 id='局部变量local-variable'>局部变量（local variable）</h3>
+<p>在函数里定义，只能在函数内部使用。</p>
+<pre><code class='language-python' lang='python'>def test():
+    x = 10
+    print(x)
+
+test()
+# print(x)  #  报错：NameError，x只能在函数内访问
+</code></pre>
+<h3 id='全局变量global-variable'>全局变量（global variable）</h3>
+<p>定义在函数外部，可以在整个程序中使用。</p>
+<pre><code class='language-python' lang='python'>y = 20
+
+def show():
+    print(y)
+
+show()  #  可以访问全局变量
+</code></pre>
+<p>要在函数里修改全局变量，需使用关键字 <code>global</code>：</p>
+<pre><code class='language-python' lang='python'>counter = 0
+
+def add():
+    global counter
+    counter += 1
+
+add()
+add()
+print(counter)  # 输出 2
+</code></pre>
+<hr />
+<h2 id='7--匿名函数lambda表达式非必要'>7 , 匿名函数（Lambda表达式）(非必要)</h2>
+<p>有时你只需要一个简短的函数，可以用 <strong>lambda</strong> 定义：</p>
+<pre><code class='language-python' lang='python'>square = lambda x: x * x
+print(square(5))  # 输出 25
+</code></pre>
+<p>等价于：</p>
+<pre><code class='language-python' lang='python'>def square(x):
+    return x * x
+</code></pre>
+<blockquote><p>lambda 函数只能写一行表达式，没有 <code>return</code>。</p>
+</blockquote>
+<hr />
+<h2 id='8--函数嵌套与作用域示例-非必要'>8 , 函数嵌套与作用域示例 (非必要)</h2>
+<p>函数可以定义在函数内部（称为<strong>嵌套函数</strong>）：</p>
+<pre><code class='language-python' lang='python'>def outer():
+    def inner():
+        print(&quot;This is inner function&quot;)
+    inner()  # 调用内部函数
+
+outer()  # 输出：This is inner function
+</code></pre>
+<hr />
+<h2 id='9--文档字符串函数说明非必要'>9 , 文档字符串（函数说明）(非必要)</h2>
+<p>在函数定义下写一段三引号的字符串，可以用来描述函数作用：</p>
+<pre><code class='language-python' lang='python'>def greet(name):
+    &quot;&quot;&quot;这个函数用于打招呼，传入名字即可输出问候&quot;&quot;&quot;
+    print(&quot;Hello,&quot;, name)
+
+print(greet.__doc__)  # 查看文档字符串
+</code></pre>
+<hr />
+<h2 id='chapter-10-def-函数加参数--不加参数'>Chapter 10: def 函数加参数 &amp; 不加参数</h2>
+<p><strong>关键词 / Keywords:</strong> parameters, arguments, reusability, function design</p>
+<hr />
+<h3 id='概念讲解-|-concept-explanation'>概念讲解 | Concept Explanation</h3>
+<p><strong>English:</strong>
+In Python, parameters allow a function to <strong>receive external values</strong> when it’s called.</p>
+<ul>
+<li>A function <strong>with parameters</strong> is more flexible — you can reuse it with different inputs.</li>
+<li>A function <strong>without parameters</strong> is fixed — it always works with the same internal data or global variables.</li>
+
+</ul>
+<p><strong>中文解释：</strong>
+在 Python 中，函数的参数（<code>parameter</code>）用于 <strong>接收外部传入的数据</strong>。</p>
+<ul>
+<li><strong>带参数的函数</strong>：可复用性强，可用不同输入执行。</li>
+<li><strong>不带参数的函数</strong>：固定执行逻辑，一般用于流程控制或固定任务。</li>
+
+</ul>
+<hr />
+<h3 id='基本形式-|-basic-form'>基本形式 | Basic Form</h3>
+<h4 id='①-无参数函数no-parameters'>① 无参数函数（No Parameters）</h4>
+<pre><code>PYTHON1def greet():
+2    print(&quot;Hello!&quot;)
+3
+</code></pre>
+<p><strong>调用：</strong></p>
+<pre><code>PYTHON1greet()
+2
+</code></pre>
+<p> <strong>特点：</strong></p>
+<ul>
+<li>不依赖输入；</li>
+<li>每次结果完全相同；</li>
+<li>用于简单固定行为（如打印、初始化、提示等）。</li>
+
+</ul>
+<hr />
+<h4 id='②-带参数函数with-parameters'>② 带参数函数（With Parameters）</h4>
+<pre><code>PYTHON1def greet(name):
+2    print(f&quot;Hello, {name}!&quot;)
+3
+</code></pre>
+<p><strong>调用：</strong></p>
+<pre><code>PYTHON1greet(&quot;Alice&quot;)
+2greet(&quot;Bob&quot;)
+3
+</code></pre>
+<p> <strong>特点：</strong></p>
+<ul>
+<li>接收外部值；</li>
+<li>每次执行可依输入不同而变化；</li>
+<li>适用于需要动态数据或多次复用场景。</li>
+
+</ul>
+<hr />
+<h3 id='对比总结-|-comparison-table'>对比总结 | Comparison Table</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th style='text-align:center;' >对比项目</th><th style='text-align:center;' >无参数函数</th><th style='text-align:center;' >带参数函数</th></tr></thead>
+<tbody><tr><td style='text-align:center;' >灵活性</td><td style='text-align:center;' > 固定逻辑</td><td style='text-align:center;' > 可变逻辑</td></tr><tr><td style='text-align:center;' >数据来源</td><td style='text-align:center;' >函数内部或全局变量</td><td style='text-align:center;' >外部传入</td></tr><tr><td style='text-align:center;' >复用性</td><td style='text-align:center;' >只能执行一种操作</td><td style='text-align:center;' >可适应多种输入</td></tr><tr><td style='text-align:center;' >调用方式</td><td style='text-align:center;' >直接调用</td><td style='text-align:center;' >需传入参数</td></tr><tr><td style='text-align:center;' >使用场景</td><td style='text-align:center;' >启动类、打印类、固定任务函数</td><td style='text-align:center;' >计算类、格式化类、变动逻辑函数</td></tr></tbody>
+</table></figure>
+<hr />
+<h3 id='示例讲解-|-example-demonstration'>示例讲解 | Example Demonstration</h3>
+<h4 id='无参数函数固定输出'>无参数函数：固定输出</h4>
+<pre><code>PYTHON1def show_time():
+2    from datetime import datetime
+3    print(&quot;Current time:&quot;, datetime.now())
+4
+</code></pre>
+<p> <strong>使用场景：</strong> 提示信息、日志、界面初始化。</p>
+<hr />
+<h4 id='带参数函数可复用逻辑'>带参数函数：可复用逻辑</h4>
+<pre><code>PYTHON1def add(x, y):
+2    return x + y
+3
+</code></pre>
+<p> <strong>使用场景：</strong> 数据处理、算法运算、变化逻辑。</p>
+<p>调用：</p>
+<pre><code>PYTHON1print(add(3, 5))     # 输出 8
+2print(add(10, 20))   # 输出 30
+3
+</code></pre>
+<hr />
+<h3 id='扩展默认参数default-parameters'>扩展：默认参数（Default Parameters）</h3>
+<pre><code>PYTHON1def greet(name=&quot;friend&quot;):
+2    print(f&quot;Hello, {name}!&quot;)
+3
+</code></pre>
+<p> <strong>说明：</strong></p>
+<ul>
+<li>若调用时不传参，使用默认值；</li>
+<li>兼具“有参数”和“无参数”的灵活性。</li>
+
+</ul>
+<pre><code>PYTHON1greet()            # 输出 Hello, friend!
+2greet(&quot;Lucy&quot;)      # 输出 Hello, Lucy!
+3
+</code></pre>
+<hr />
+<h3 id='实际应用场景-|-common-use-cases'>实际应用场景 | Common Use Cases</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th style='text-align:center;' >使用场景</th><th style='text-align:center;' >推荐函数类型</th><th style='text-align:center;' >示例</th></tr></thead>
+<tbody><tr><td style='text-align:center;' >打印系统欢迎词</td><td style='text-align:center;' >无参数函数</td><td style='text-align:center;' ><code>def welcome(): print(&quot;Welcome!&quot;)</code></td></tr><tr><td style='text-align:center;' >求和、平均值</td><td style='text-align:center;' >带参数函数</td><td style='text-align:center;' ><code>def average(a, b, c): ...</code></td></tr><tr><td style='text-align:center;' >文件路径处理</td><td style='text-align:center;' >带参数函数</td><td style='text-align:center;' >接收一个路径字符串</td></tr><tr><td style='text-align:center;' >固定动作（清屏、重启）</td><td style='text-align:center;' >无参数函数</td><td style='text-align:center;' >不依赖任何输入</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='10--总结表'>10 , 总结表</h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>关键内容</th><th>说明</th><th>示例</th></tr></thead>
+<tbody><tr><td>函数定义</td><td>用 <code>def</code> 声明</td><td><code>def func():</code></td></tr><tr><td>调用函数</td><td>写函数名 + 括号</td><td><code>func()</code></td></tr><tr><td>参数</td><td>传入值、可设默认值</td><td><code>def add(a, b=1)</code></td></tr><tr><td>返回值</td><td>用 <code>return</code> 返回结果</td><td><code>return x + y</code></td></tr><tr><td>局部变量</td><td>函数内部有效</td><td><code>x = 10</code></td></tr><tr><td>全局变量</td><td>整个程序有效</td><td><code>global x</code></td></tr><tr><td>匿名函数</td><td>用 <code>lambda</code> 定义</td><td><code>lambda x: x**2</code></td></tr></tbody>
+</table></figure>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id='chapter-3builtin-data-types'><strong>Chapter 3：Built‑in Data Types </strong></h1>
+<hr />
+<h3 id='overview-概述'>Overview 概述</h3>
+<p>Python 中的数据结构是学习编程的基础，它们决定了数据如何存储、组织与操作。<br/>In this chapter, you will learn all common built‑in data types in Python:  </p>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>数据类型 Name</th><th>English 名称</th><th>Typical Use 常见场景</th></tr></thead>
+<tbody><tr><td><code>str</code></td><td>String</td><td>文字、文本</td></tr><tr><td><code>list</code></td><td>List</td><td>有序可修改的序列</td></tr><tr><td><code>tuple</code></td><td>Tuple</td><td>有序不可修改的序列</td></tr><tr><td><code>dict</code></td><td>Dictionary</td><td>键值映射结构</td></tr><tr><td><code>set</code></td><td>Set</td><td>无序不重复元素集合</td></tr><tr><td><code>array</code></td><td>Array</td><td>同类型数值数组（与数学/科学计算有关）</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='1-string字符串'><strong>1. String（字符串）</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>特点 Feature</th><th>英文说明</th><th>中文说明</th></tr></thead>
+<tbody><tr><td>类型名称</td><td><code>str</code></td><td>用引号 <code>&#39; &#39;</code> 或 <code>&quot; &quot;</code> 表示的文本</td></tr><tr><td>是否可修改</td><td>不可修改</td><td>值不能被直接改变</td></tr><tr><td>是否有序</td><td>有序</td><td>可以按索引访问</td></tr></tbody>
+</table></figure>
+<h3 id='示例-example'>示例 Example</h3>
+<pre><code class='language-python' lang='python'>text = &quot;Python&quot;
+print(text[0])      # P
+print(text[-1])     # n
+print(text[1:4])    # yth
+</code></pre>
+<h3 id='常用操作'>常用操作</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>操作名称</th><th>示例代码</th><th>结果</th></tr></thead>
+<tbody><tr><td>字符串拼接</td><td><code>&quot;Py&quot; + &quot;thon&quot;</code></td><td><code>&#39;Python&#39;</code></td></tr><tr><td>重复</td><td><code>&quot;Hi &quot; * 3</code></td><td><code>&#39;Hi Hi Hi &#39;</code></td></tr><tr><td>查找</td><td><code>&quot;hello&quot;.find(&quot;l&quot;)</code></td><td><code>2</code></td></tr><tr><td>替换</td><td><code>&quot;I like C&quot;.replace(&quot;C&quot;, &quot;Python&quot;)</code></td><td><code>&#39;I like Python&#39;</code></td></tr><tr><td>分割</td><td><code>&quot;a,b,c&quot;.split(&quot;,&quot;)</code></td><td><code>[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</code></td></tr><tr><td>计数</td><td><code>&quot;banana&quot;.count(&quot;a&quot;)</code></td><td><code>3</code></td></tr><tr><td>去空格</td><td><code>&quot;  hi  &quot;.strip()</code></td><td><code>&#39;hi&#39;</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='2-list列表'><strong>2. List（列表）</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>特点</th><th>English</th><th>中文说明</th></tr></thead>
+<tbody><tr><td>类型名称</td><td><code>list</code></td><td>[] 中放多个元素</td></tr><tr><td>是否可修改</td><td>可修改</td><td>支持增删改</td></tr><tr><td>是否有序</td><td>有序</td><td>元素有索引，按顺序排列</td></tr></tbody>
+</table></figure>
+<h3 id='示例-example-2'>示例 Example</h3>
+<pre><code class='language-python' lang='python'>nums = [10, 20, 30]
+print(nums[0])     # 10
+print(nums[-1])    # 30
+</code></pre>
+<h3 id='常用方法-methods'>常用方法 Methods</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能说明</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.append(x)</code></td><td>末尾添加一个元素</td><td><code>nums.append(40)</code></td></tr><tr><td><code>.insert(i, x)</code></td><td>在指定位置插入</td><td><code>nums.insert(1,15)</code></td></tr><tr><td><code>.pop(i)</code></td><td>删除并返回元素</td><td><code>nums.pop(0)</code></td></tr><tr><td><code>.remove(x)</code></td><td>删除指定元素</td><td><code>nums.remove(20)</code></td></tr><tr><td><code>.sort()</code></td><td>升序排列</td><td><code>nums.sort()</code></td></tr><tr><td><code>.reverse()</code></td><td>倒序排列</td><td><code>nums.reverse()</code></td></tr></tbody>
+</table></figure>
+<h3 id='列表切片与循环'>列表切片与循环</h3>
+<pre><code class='language-python' lang='python'>colors = [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;yellow&quot;]
+print(colors[1:3])       # [&#39;green&#39;, &#39;blue&#39;]
+
+for color in colors:
+    print(color)
+</code></pre>
+<hr />
+<h2 id='3-tuple元组'><strong>3. Tuple（元组）</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>特点</th><th>English</th><th>中文说明</th></tr></thead>
+<tbody><tr><td>类型名称</td><td><code>tuple</code></td><td>()括起来的一组元素</td></tr><tr><td>是否可修改</td><td>不可修改</td><td>创建后不能增删改</td></tr><tr><td>是否有序</td><td>有序</td><td>可以按索引访问</td></tr></tbody>
+</table></figure>
+<h3 id='示例-example-3'>示例 Example</h3>
+<pre><code class='language-python' lang='python'>point = (10, 20)
+print(point[0])  # 10
+</code></pre>
+<h3 id='使用场景'>使用场景</h3>
+<ul>
+<li>固定数据集合：如坐标 <code>(x, y)</code></li>
+<li>比列表更安全，避免被意外修改</li>
+<li>可以作为字典的键（因为不可变）</li>
+
+</ul>
+<hr />
+<h2 id='4-dictionary字典'><strong>4. Dictionary（字典）</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>特点</th><th>English</th><th>中文说明</th></tr></thead>
+<tbody><tr><td>类型名称</td><td><code>dict</code></td><td><code>{键: 值}</code> 组成</td></tr><tr><td>是否可修改</td><td>可修改</td><td>&nbsp;</td></tr><tr><td>是否有序</td><td>从 Python 3.7 起有序（保持插入顺序）</td><td>&nbsp;</td></tr><tr><td>访问方式</td><td>用 KEY 找 VALUE</td><td>&nbsp;</td></tr></tbody>
+</table></figure>
+<h3 id='示例-example-4'>示例 Example</h3>
+<pre><code class='language-python' lang='python'>student = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 20, &quot;major&quot;: &quot;CS&quot;}
+print(student[&quot;name&quot;])     # Alice
+</code></pre>
+<h3 id='常用方法-methods-2'>常用方法 Methods</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.keys()</code></td><td>获取所有键</td><td><code>student.keys()</code></td></tr><tr><td><code>.values()</code></td><td>获取所有值</td><td><code>student.values()</code></td></tr><tr><td><code>.items()</code></td><td>获取键值对</td><td><code>student.items()</code></td></tr><tr><td><code>.get(key, default)</code></td><td>读值，自动提供默认值</td><td><code>student.get(&quot;grade&quot;, &quot;N/A&quot;)</code></td></tr><tr><td><code>.pop(key)</code></td><td>删除键</td><td><code>student.pop(&quot;age&quot;)</code></td></tr><tr><td><code>.update({...})</code></td><td>更新或增加键值</td><td><code>student.update({&quot;grade&quot;:&quot;A&quot;})</code></td></tr></tbody>
+</table></figure>
+<h3 id='遍历-dictionary'>遍历 Dictionary</h3>
+<pre><code class='language-python' lang='python'>for k, v in student.items():
+    print(k, &quot;-&gt;&quot;, v)
+</code></pre>
+<p>输出：</p>
+<pre><code>name -&gt; Alice
+age -&gt; 20
+major -&gt; CS
+</code></pre>
+<hr />
+<h2 id='5-set集合'><strong>5. Set（集合）</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>特点</th><th>English</th><th>中文说明</th></tr></thead>
+<tbody><tr><td>类型名称</td><td><code>set</code></td><td><code>{a, b, c}</code></td></tr><tr><td>是否可修改</td><td>可修改</td><td>&nbsp;</td></tr><tr><td>是否有序</td><td>无序</td><td>&nbsp;</td></tr><tr><td>是否允许重复</td><td>不允许有重复元素</td><td>&nbsp;</td></tr></tbody>
+</table></figure>
+<h3 id='示例-example-5'>示例 Example</h3>
+<pre><code class='language-python' lang='python'>nums = {1, 2, 3, 3, 2}
+print(nums)     # 输出 {1, 2, 3}
+</code></pre>
+<h3 id='集合操作-set-operations'>集合操作 Set Operations</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>操作</th><th>示例</th><th>结果</th></tr></thead>
+<tbody><tr><td>并集 <code>|</code></td><td><code>{1,2,3} | {3,4,5}</code></td><td><code>{1,2,3,4,5}</code></td></tr><tr><td>交集 <code>&amp;</code></td><td><code>{1,2,3} &amp; {2,3,4}</code></td><td><code>{2,3}</code></td></tr><tr><td>差集 <code>-</code></td><td><code>{1,2,3} - {2}</code></td><td><code>{1,3}</code></td></tr><tr><td>对称差 <code>^</code></td><td><code>{1,2} ^ {2,3}</code></td><td><code>{1,3}</code></td></tr></tbody>
+</table></figure>
+<h3 id='常用方法'>常用方法</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能</th></tr></thead>
+<tbody><tr><td><code>.add(x)</code></td><td>添加元素</td></tr><tr><td><code>.remove(x)</code></td><td>删除元素（如不存在则报错）</td></tr><tr><td><code>.discard(x)</code></td><td>删除元素（不存在也不报错）</td></tr><tr><td><code>.clear()</code></td><td>清空集合</td></tr><tr><td><code>.union()</code> / <code>.intersection()</code></td><td>并集 / 交集</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='6-array数组'><strong>6. Array（数组）</strong></h2>
+<p>Python 自带的列表已能实现类似数组功能，但在科学计算中我们通常用 <strong>array 模块</strong> 或 <strong>NumPy</strong>。</p>
+<h3 id='用-array-模块创建'>用 <code>array</code> 模块创建</h3>
+<pre><code class='language-python' lang='python'>from array import array
+
+nums = array(&#39;i&#39;, [1, 2, 3, 4])  # &#39;i&#39; 表示int类型
+nums.append(5)
+print(nums)   # array(&#39;i&#39;, [1, 2, 3, 4, 5])
+</code></pre>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>数组类型代码</th><th>含义</th></tr></thead>
+<tbody><tr><td><code>&#39;i&#39;</code></td><td>整数 int</td></tr><tr><td><code>&#39;f&#39;</code></td><td>浮点 float</td></tr><tr><td><code>&#39;d&#39;</code></td><td>双精度 float</td></tr></tbody>
+</table></figure>
+<h3 id='与列表区别'>与列表区别</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>项目</th><th>列表（List）</th><th>数组（Array）</th></tr></thead>
+<tbody><tr><td>数据类型</td><td>任意类型混合</td><td>必须同一类型</td></tr><tr><td>性能</td><td>较慢</td><td>较快、更节省内存</td></tr><tr><td>常用场景</td><td>通用数据集合</td><td>科学计算、数值运算</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='7-综合对比-summary-table-比较表'><strong>7. 综合对比 Summary Table 比较表</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>类型</th><th>英文名</th><th>可修改</th><th>有序</th><th>重复</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>str</code></td><td>String</td><td>❌</td><td>✅</td><td>✅</td><td><code>&quot;Python&quot;</code></td></tr><tr><td><code>list</code></td><td>List</td><td>✅</td><td>✅</td><td>✅</td><td><code>[1,2,3]</code></td></tr><tr><td><code>tuple</code></td><td>Tuple</td><td>❌</td><td>✅</td><td>✅</td><td><code>(1,2,3)</code></td></tr><tr><td><code>dict</code></td><td>Dictionary</td><td>✅</td><td>✅</td><td>键不可重复</td><td><code>{&quot;a&quot;:1,&quot;b&quot;:2}</code></td></tr><tr><td><code>set</code></td><td>Set</td><td>✅</td><td>❌</td><td>❌</td><td><code>{1,2,3}</code></td></tr><tr><td><code>array</code></td><td>Array</td><td>✅</td><td>✅</td><td>✅</td><td><code>array(&#39;i&#39;,[1,2,3])</code></td></tr></tbody>
+</table></figure>
+<p>&nbsp;</p>
+<h1 id='chapter-4if-statements'><strong>Chapter 4：<code>if</code> Statements </strong></h1>
+<hr />
+<h3 id='overview-概述-2'>Overview 概述</h3>
+<p><code>if</code> 语句是 <strong>Python 程序的决策结构（decision structure）</strong>。<br/>它让程序根据条件的真假（True / False）来 <strong>选择不同的执行路径</strong>。  </p>
+<p>In simple words:  </p>
+<blockquote><p><code>if</code> allows your program to <strong>make decisions</strong>.</p>
+</blockquote>
+<hr />
+<h2 id='1-basic-syntax'>1. Basic Syntax</h2>
+<pre><code class='language-python' lang='python'>if 条件:                      # condition
+    语句块1 (True时执行)
+else:
+    语句块2 (False时执行)
+</code></pre>
+<p>英文结构：</p>
+<pre><code class='language-python' lang='python'>if condition:
+    statements_if_true
+else:
+    statements_if_false
+</code></pre>
+<p>注意：  </p>
+<ul>
+<li><strong>冒号 (:)</strong> 是必须的。  </li>
+<li><strong>缩进（indentation）</strong> 非常重要！Python 用缩进代替 <code>{}</code>。  </li>
+
+</ul>
+<hr />
+<h3 id='example'>Example </h3>
+<pre><code class='language-python' lang='python'>age = 18
+if age &gt;= 18:
+    print(&quot;You are an adult.&quot;)     # 如果条件为真执行
+else:
+    print(&quot;You are not an adult.&quot;) # 否则执行
+</code></pre>
+<p>输出：</p>
+<pre><code>You are an adult.
+</code></pre>
+<hr />
+<h2 id='2-if--elif--else-多条件判断'><strong>2. <code>if–elif–else</code> 多条件判断</strong></h2>
+<p>当你有多种条件时，可以用 <code>elif</code>（“else if”的缩写）。</p>
+<pre><code class='language-python' lang='python'>score = 85
+
+if score &gt;= 90:
+    print(&quot;Excellent&quot;)
+elif score &gt;= 70:
+    print(&quot;Good&quot;)
+elif score &gt;= 60:
+    print(&quot;Pass&quot;)
+else:
+    print(&quot;Fail&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Good
+</code></pre>
+<blockquote><p>判断顺序从上到下，<strong>第一个成立的条件</strong>会执行，然后整个结构结束。</p>
+</blockquote>
+<hr />
+<h2 id='3-嵌套条件nested-if'><strong>3. 嵌套条件（Nested if）</strong></h2>
+<pre><code class='language-python' lang='python'>x = 10
+if x &gt; 0:
+    if x &lt; 5:
+        print(&quot;x is between 0 and 5&quot;)
+    else:
+        print(&quot;x is greater than or equal to 5&quot;)
+</code></pre>
+<p> 嵌套 if 语句用于进行 <strong>多层逻辑判断</strong>。<br/>However, avoid too deep nesting — prefer logical operators instead!</p>
+<hr />
+<h2 id='4-logical-operators-逻辑运算符结合-if'><strong>4. Logical Operators 逻辑运算符结合 if</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>意义</th><th>示例</th><th>结果</th></tr></thead>
+<tbody><tr><td><code>and</code></td><td>并且</td><td><code>x &gt; 0 and x &lt; 10</code></td><td>True 当两个都为真</td></tr><tr><td><code>or</code></td><td>或者</td><td><code>x &lt; 0 or x &gt; 100</code></td><td>True 其中之一为真</td></tr><tr><td><code>not</code></td><td>取反</td><td><code>not (x &gt; 5)</code></td><td>True 如果 x ≤ 5</td></tr></tbody>
+</table></figure>
+<p>示例：</p>
+<pre><code class='language-python' lang='python'>x = 8
+if x &gt; 0 and x &lt; 10:
+    print(&quot;x is a positive single-digit number&quot;)
+</code></pre>
+<hr />
+<h2 id='5-comparison-operators-比较运算符'><strong>5. Comparison Operators 比较运算符</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr></thead>
+<tbody><tr><td><code>==</code></td><td>等于</td><td><code>5 == 5</code></td><td>True</td></tr><tr><td><code>!=</code></td><td>不等于</td><td><code>5 != 3</code></td><td>True</td></tr><tr><td><code>&gt;</code></td><td>大于</td><td><code>8 &gt; 6</code></td><td>True</td></tr><tr><td><code>&lt;</code></td><td>小于</td><td><code>4 &lt; 7</code></td><td>True</td></tr><tr><td><code>&gt;=</code></td><td>大于等于</td><td><code>6 &gt;= 6</code></td><td>True</td></tr><tr><td><code>&lt;=</code></td><td>小于等于</td><td><code>3 &lt;= 5</code></td><td>True</td></tr></tbody>
+</table></figure>
+<p>这些运算符可以和 <code>if</code> 一起使用。</p>
+<hr />
+<h2 id='6-oneline-conditional-expression条件表达式--三元运算-非必要'><strong>6. One‑line Conditional Expression（条件表达式 / 三元运算）</strong> (非必要)</h2>
+<p>有时候只想用一行表达 if‑else，可以用 “<strong>三元表达式</strong>”：</p>
+<pre><code class='language-python' lang='python'>a = 5
+b = &quot;Positive&quot; if a &gt; 0 else &quot;Non‑positive&quot;
+print(b)
+</code></pre>
+<p>输出：</p>
+<pre><code>Positive
+</code></pre>
+<p>语法：</p>
+<pre><code class='language-python' lang='python'>变量 = 值1 if 条件 else 值2
+</code></pre>
+<hr />
+<h2 id='7-using-in-and-not-in-判断成员关系'><strong>7. Using <code>in</code> and <code>not in</code> 判断成员关系</strong> </h2>
+<pre><code class='language-python' lang='python'>fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]
+
+if &quot;apple&quot; in fruits:
+    print(&quot;Yes, apple is in the list.&quot;)
+if &quot;mango&quot; not in fruits:
+    print(&quot;No mango found.&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Yes, apple is in the list.
+No mango found.
+</code></pre>
+<hr />
+<h2 id='8-combining-multiple-conditions-多重组合条件'><strong>8. Combining Multiple Conditions 多重组合条件</strong></h2>
+<pre><code class='language-python' lang='python'>x = 12
+if (x &gt; 0 and x &lt; 10) or (x == 12):
+    print(&quot;Condition matched!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Condition matched!
+</code></pre>
+<hr />
+<h2 id='9-boolean-values-布尔类型与-if'><strong>9. Boolean Values 布尔类型与 if</strong> </h2>
+<p>在 if 判断中，Python 会自动根据值的“真假”做判断：</p>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>值</th><th>判断结果（False）</th></tr></thead>
+<tbody><tr><td><code>0</code></td><td>False</td></tr><tr><td><code>None</code></td><td>False</td></tr><tr><td><code>&quot;&quot;</code> 空字符串</td><td>False</td></tr><tr><td><code>[]</code> 空列表</td><td>False</td></tr><tr><td><code>{}</code> 空字典</td><td>False</td></tr><tr><td><code>set()</code> 空集合</td><td>False</td></tr></tbody>
+</table></figure>
+<p>除了这些，其它都视为 True。</p>
+<p>示例：</p>
+<pre><code class='language-python' lang='python'>if []:
+    print(&quot;non-empty&quot;)   # 不执行
+else:
+    print(&quot;empty&quot;)       # 执行
+</code></pre>
+<p>输出：</p>
+<pre><code>empty
+</code></pre>
+<hr />
+<h2 id='10-双-if-语句--if-elif-语句'><strong>10. 双 if 语句 &amp; if-elif 语句</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th style='text-align:center;' >概念</th><th style='text-align:center;' >英文关键词</th><th style='text-align:center;' >示例</th><th style='text-align:center;' >说明</th></tr></thead>
+<tbody><tr><td style='text-align:center;' >双 if 语句</td><td style='text-align:center;' >independent if</td><td style='text-align:center;' >多条件并行判断</td><td style='text-align:center;' >每个条件独立执行</td></tr><tr><td style='text-align:center;' >if-elif 语句</td><td style='text-align:center;' >branching, exclusive</td><td style='text-align:center;' >只执行一个分支</td><td style='text-align:center;' >条件互斥，有层次关系</td></tr><tr><td style='text-align:center;' >关键区别</td><td style='text-align:center;' >control flow</td><td style='text-align:center;' >控制执行路径</td><td style='text-align:center;' >if-elif 跳过余下判断</td></tr><tr><td style='text-align:center;' >建议使用场景</td><td style='text-align:center;' >分类或条件分支</td><td style='text-align:center;' >选择唯一结果</td><td style='text-align:center;' >比如成绩等级、状态判断</td></tr></tbody>
+</table></figure>
+<hr />
+<h1 id='chapter-5loops'><strong>Chapter 5：Loops</strong></h1>
+<hr />
+<h3 id='overview-概述-3'>Overview （概述）</h3>
+<p><strong>Loop</strong>（循环）让你的程序可以重复执行一段代码。<br/>In programming, loops allow a block of code to <strong>run multiple times</strong> until a condition is met.</p>
+<p>Python 中主要有两种循环：</p>
+<ul>
+<li><code>for</code> 循环 —— 用于遍历序列（列表、字符串、字典等）；</li>
+<li><code>while</code> 循环 —— 用于在某个条件为真时持续执行。  </li>
+
+</ul>
+<hr />
+<h2 id='1-for-loop'>1. <code>for</code> Loop </h2>
+<h3 id='basic-syntax-基本语法'>Basic Syntax 基本语法</h3>
+<pre><code class='language-python' lang='python'>for variable in iterable:
+    执行语句
+</code></pre>
+<p>英语解释：</p>
+<pre><code class='language-python' lang='python'>for variable in iterable:
+    # do something with variable
+</code></pre>
+<ul>
+<li><code>iterable</code> 指可迭代对象（如 list, tuple, str, range, dict）。</li>
+<li>每次循环都会让 <code>variable</code> 依次取遍其中的元素。</li>
+
+</ul>
+<h3 id='反向索引'>反向索引</h3>
+<p>1 用负号索引
+  直接用负数访问末尾元素：</p>
+<pre><code class='language-python' lang='python'>PYTHON
+print(letters[-1])  # D
+print(letters[-2])  # Y
+ 从右往左数，-1 是最后一个，-2 倒数第二。
+</code></pre>
+<p>2 用计算式索引：len(list) − 1 − i 或类似
+适合在 for i in range() 循环里倒序访问。</p>
+<p>例如：</p>
+<pre><code class='language-python' lang='python'>PYTHON
+letters = [&#39;U&#39;, &#39;S&#39;, &#39;Y&#39;, &#39;D&#39;]
+for i in range(len(letters)):
+    print(letters[len(letters) - 1 - i])
+</code></pre>
+<p>计算过程：
+len(letters) = 4，索引是 3→2→1→0，打印 D Y S U。</p>
+<hr />
+<h3 id='example-例子'>Example 例子</h3>
+<pre><code class='language-python' lang='python'>fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]
+
+for fruit in fruits:
+    print(fruit)
+</code></pre>
+<p>输出：</p>
+<pre><code>apple
+banana
+cherry
+</code></pre>
+<p> 相当于 “从列表中取出每个水果并打印”。</p>
+<hr />
+<h3 id='using-range-与-range-搭配'>Using <code>range()</code> 与 range 搭配</h3>
+<p><code>range()</code> 用于生成连续数字序列，非常常用。</p>
+<pre><code class='language-python' lang='python'>for i in range(5):
+    print(i)
+</code></pre>
+<p>输出：</p>
+<pre><code>0
+1
+2
+3
+4
+</code></pre>
+<blockquote><p>默认从 0 开始，直到（不含）5。</p>
+</blockquote>
+<hr />
+<h3 id='控制起始和步长'>控制起始和步长</h3>
+<pre><code class='language-python' lang='python'>for i in range(1, 10, 2):
+    print(i)
+</code></pre>
+<p>输出：</p>
+<pre><code>1
+3
+5
+7
+9
+</code></pre>
+<p>解释：<br/><code>range(起始, 结束, 步长)</code> → 从 1 到 9，每次加 2。</p>
+<hr />
+<h3 id='looping-through-strings-遍历字符串'>Looping through Strings 遍历字符串</h3>
+<pre><code class='language-python' lang='python'>for ch in &quot;Python&quot;:
+    print(ch)
+</code></pre>
+<p>输出：</p>
+<pre><code>P
+y
+t
+h
+o
+n
+</code></pre>
+<hr />
+<h3 id='looping-through-dictionary-遍历字典'>Looping through Dictionary 遍历字典</h3>
+<pre><code class='language-python' lang='python'>info = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 20}
+
+for key, value in info.items():
+    print(key, &quot;=&quot;, value)
+</code></pre>
+<p>输出：</p>
+<pre><code>name = Alice
+age = 20
+</code></pre>
+<hr />
+<h2 id='2-while-loop'><strong>2. <code>while</code> Loop </strong></h2>
+<h3 id='basic-syntax-基本语法-2'>Basic Syntax 基本语法</h3>
+<pre><code class='language-python' lang='python'>while condition:
+    执行语句
+</code></pre>
+<p>英文结构：</p>
+<pre><code class='language-python' lang='python'>while condition:
+    # loop body
+</code></pre>
+<p>只要条件为真（True），就会重复执行。</p>
+<hr />
+<h3 id='example-示例'>Example 示例</h3>
+<pre><code class='language-python' lang='python'>count = 0
+while count &lt; 3:
+    print(&quot;Hello&quot;)
+    count += 1
+</code></pre>
+<p>输出：</p>
+<pre><code>Hello
+Hello
+Hello
+</code></pre>
+<hr />
+<h3 id='无限循环-infinite-loop'>无限循环 Infinite Loop</h3>
+<pre><code class='language-python' lang='python'>while True:
+    print(&quot;This loop never ends!&quot;)
+</code></pre>
+<p> 要小心，当条件永远为 True 时，它会一直执行。<br/>你可以搭配 <code>break</code> 退出：  </p>
+<pre><code class='language-python' lang='python'>x = 0
+while True:
+    if x == 3:
+        break
+    print(x)
+    x += 1
+</code></pre>
+<p>输出：</p>
+<pre><code>0
+1
+2
+</code></pre>
+<hr />
+<h2 id='3-loop-control-statements'><strong>3. Loop Control Statements </strong> </h2>
+<p>Python 提供三个常见控制命令：  </p>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>语句</th><th>English Meaning</th><th>中文说明</th></tr></thead>
+<tbody><tr><td><code>break</code></td><td>Exit the loop</td><td>立刻结束整个循环</td></tr><tr><td><code>continue</code></td><td>Skip current iteration</td><td>跳过本次循环，继续下一次</td></tr><tr><td><code>pass</code></td><td>Do nothing</td><td>什么也不做（占位）</td></tr></tbody>
+</table></figure>
+<hr />
+<h3 id='break-示例'><code>break</code> 示例</h3>
+<pre><code class='language-python' lang='python'>for i in range(1, 10):
+    if i == 5:
+        break
+    print(i)
+</code></pre>
+<p>输出：</p>
+<pre><code>1
+2
+3
+4
+</code></pre>
+<p> 当 <code>i == 5</code> 时终止循环。</p>
+<hr />
+<h3 id='continue-示例'><code>continue</code> 示例</h3>
+<pre><code class='language-python' lang='python'>for i in range(1, 6):
+    if i == 3:
+        continue  # 跳过本次
+    print(i)
+</code></pre>
+<p>输出：</p>
+<pre><code>1
+2
+4
+5
+</code></pre>
+<hr />
+<h3 id='pass-示例'><code>pass</code> 示例</h3>
+<pre><code class='language-python' lang='python'>for x in range(4):
+    if x == 2:
+        pass    # 什么也不做
+    print(x)
+</code></pre>
+<p>输出：</p>
+<pre><code>0
+1
+2
+3
+</code></pre>
+<hr />
+<h2 id='4-loop--else-statement'><strong>4. Loop + <code>else</code> Statement </strong></h2>
+<p>Python 有一个特别的语法：循环结束后可执行 <code>else</code> 块。<br/><code>else</code> 会在 <strong>循环没有被 break 打断时执行</strong>。</p>
+<pre><code class='language-python' lang='python'>for i in range(3):
+    print(i)
+else:
+    print(&quot;Loop finished normally.&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>0
+1
+2
+Loop finished normally.
+</code></pre>
+<p>但如果中途 <code>break</code>，则不会执行：</p>
+<pre><code class='language-python' lang='python'>for i in range(3):
+    if i == 1:
+        break
+else:
+    print(&quot;Loop finished normally.&quot;)
+</code></pre>
+<p>输出不会出现 “Loop finished normally.”。</p>
+<hr />
+<h2 id='5-nested-loops'><strong>5. Nested Loops </strong></h2>
+<p>嵌套循环指 “循环中套循环”。</p>
+<pre><code class='language-python' lang='python'>for i in range(1, 4):
+    for j in range(1, 3):
+        print(i, j)
+</code></pre>
+<p>输出：</p>
+<pre><code>1 1
+1 2
+2 1
+2 2
+3 1
+3 2
+</code></pre>
+<hr />
+<h2 id='6-key-differences'><strong>6. Key Differences </strong> </h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th style='text-align:center;' >对比项目</th><th style='text-align:center;' >For Loop</th><th style='text-align:center;' >While Loop</th></tr></thead>
+<tbody><tr><td style='text-align:center;' >重复次数确定性</td><td style='text-align:center;' >通常确定（range 或列表长度）</td><td style='text-align:center;' >不确定（取决于条件）</td></tr><tr><td style='text-align:center;' >常用场景</td><td style='text-align:center;' >遍历列表、字符串、范围</td><td style='text-align:center;' >等待用户输入、条件达到前循环</td></tr><tr><td style='text-align:center;' >控制变量</td><td style='text-align:center;' >自动迭代（如 <code>i</code>）</td><td style='text-align:center;' >需要手动更新变量</td></tr><tr><td style='text-align:center;' >易错点</td><td style='text-align:center;' >忘记正确使用 <code>range()</code></td><td style='text-align:center;' >忘记更新条件变量，造成死循环</td></tr><tr><td style='text-align:center;' >写法简洁度</td><td style='text-align:center;' >较简洁</td><td style='text-align:center;' >逻辑更灵活但需谨慎</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='7-practical-examples-实际案例'><strong>7. Practical Examples 实际案例</strong></h2>
+<h3 id='example-1-----打印1到10的偶数'>Example 1 — 打印1到10的偶数</h3>
+<pre><code class='language-python' lang='python'>for i in range(1, 11):
+    if i % 2 == 0:
+        print(i)
+</code></pre>
+<p>输出：</p>
+<pre><code>2
+4
+6
+8
+10
+</code></pre>
+<hr />
+<h3 id='example-2-----求列表元素之和'>Example 2 — 求列表元素之和</h3>
+<pre><code class='language-python' lang='python'>nums = [10, 20, 30, 40]
+total = 0
+for n in nums:
+    total += n
+print(&quot;Sum =&quot;, total)
+</code></pre>
+<p>输出：</p>
+<pre><code>Sum = 100
+</code></pre>
+<hr />
+<h3 id='example-3-----倒计时'>Example 3 — 倒计时</h3>
+<pre><code class='language-python' lang='python'>count = 5
+while count &gt; 0:
+    print(count)
+    count -= 1
+print(&quot;Blast Off!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>5
+4
+3
+2
+1
+Blast Off!
+</code></pre>
+<hr />
+<h2 id='summary-table-----循环对照表'><strong>Summary Table — 循环对照表</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>循环类型</th><th>英文名称</th><th>主要用途</th><th>是否基于条件</th><th>是否遍历序列</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>for</code></td><td>For Loop</td><td>遍历序列元素</td><td>❌</td><td>✅</td><td><code>for x in list:</code></td></tr><tr><td><code>while</code></td><td>While Loop</td><td>持续执行直到条件为假</td><td>✅</td><td>❌</td><td><code>while x &lt; 10:</code></td></tr><tr><td><code>break</code></td><td>Break</td><td>提前终止循环</td><td>✅</td><td>✅</td><td><code>if x==5: break</code></td></tr><tr><td><code>continue</code></td><td>Continue</td><td>跳过当前迭代</td><td>✅</td><td>✅</td><td><code>if x%2==0: continue</code></td></tr><tr><td><code>pass</code></td><td>Pass</td><td>占位不做操作</td><td>❌</td><td>✅</td><td><code>if x==3: pass</code></td></tr><tr><td><code>else</code></td><td>Loop‑else</td><td>循环正常结束时执行</td><td>✅</td><td>✅</td><td><code>for x in ... else:</code></td></tr></tbody>
+</table></figure>
+<hr />
+<p>&nbsp;</p>
+<h1 id='chapter-6exception-handling-----try--except'><strong>Chapter 6：Exception Handling — try … except </strong></h1>
+<hr />
+<h3 id='overview-概述-4'>Overview （概述）</h3>
+<p>当程序执行过程中出现错误（Error）时，Python 默认会<strong>停止执行并抛出异常（Exception）</strong>。<br/>为了防止程序崩溃，我们可以使用 <strong><code>try … except</code></strong> 语句来<strong>捕获并处理错误</strong>，从而让程序继续运行。</p>
+<blockquote><p>In short:<br/><code>try-except</code> allows a program to <strong>handle errors gracefully</strong>, instead of crashing.</p>
+</blockquote>
+<hr />
+<h2 id='1-what-is-an-exception-什么是异常'><strong>1. What is an Exception? 什么是异常？</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>类型</th><th>示例</th><th>含义</th></tr></thead>
+<tbody><tr><td><code>ZeroDivisionError</code></td><td><code>10 / 0</code></td><td>除以零错误</td></tr><tr><td><code>ValueError</code></td><td><code>int(&quot;abc&quot;)</code></td><td>无法转换类型</td></tr><tr><td><code>NameError</code></td><td>未定义的变量</td><td>引用不存在的名称</td></tr><tr><td><code>TypeError</code></td><td><code>2 + &quot;3&quot;</code></td><td>类型不匹配</td></tr><tr><td><code>IndexError</code></td><td>超出列表索引</td><td>访问不存在的元素</td></tr><tr><td><code>KeyError</code></td><td>访问字典中不存在的键</td><td>字典键错误</td></tr><tr><td><code>FileNotFoundError</code></td><td>打开不存在的文件</td><td>文件错误</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='2-basic-syntax-基本语法'><strong>2. Basic Syntax 基本语法</strong></h2>
+<pre><code class='language-python' lang='python'>try:
+    # 可能出错的代码
+except:
+    # 当错误发生时执行此处
+</code></pre>
+<h3 id='example-示例-2'>Example 示例</h3>
+<pre><code class='language-python' lang='python'>try:
+    x = 10 / 0
+except:
+    print(&quot;An error occurred!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>An error occurred!
+</code></pre>
+<p>即使出错，程序不会崩溃，依然能继续执行。</p>
+<hr />
+<h2 id='3-catch-specific-exception-捕获特定异常'><strong>3. Catch Specific Exception 捕获特定异常</strong></h2>
+<p>有时你只想捕获某一种错误类型，可以像下面这样写：</p>
+<pre><code class='language-python' lang='python'>try:
+    num = int(&quot;abc&quot;)
+except ValueError:
+    print(&quot;Please enter a valid number!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Please enter a valid number!
+</code></pre>
+<blockquote><p>好处：更精确控制，不会误拦截其他错误。</p>
+</blockquote>
+<hr />
+<h2 id='4-multiple-excepts-多个异常类型-非必要'><strong>4. Multiple Excepts 多个异常类型</strong> (非必要)</h2>
+<p>如果可能出现不同错误，可以设置多个 except 分支：</p>
+<pre><code class='language-python' lang='python'>try:
+    a = int(input(&quot;Enter number: &quot;))
+    b = int(input(&quot;Enter divisor: &quot;))
+    print(a / b)
+except ZeroDivisionError:
+    print(&quot;❌ Cannot divide by zero.&quot;)
+except ValueError:
+    print(&quot;❌ Please enter a valid integer.&quot;)
+</code></pre>
+<p>示例输入：</p>
+<pre><code>Enter number: 10
+Enter divisor: 0
+❌ Cannot divide by zero.
+</code></pre>
+<hr />
+<h2 id='5-catch-multiple-errors-together-同时捕获多种错误非必要'><strong>5. Catch Multiple Errors Together 同时捕获多种错误</strong>(非必要)</h2>
+<p>你也可以将多个异常写在一个元组里：</p>
+<pre><code class='language-python' lang='python'>try:
+    x = int(&quot;abc&quot;)
+except (ValueError, TypeError):
+    print(&quot;Error: Invalid conversion or type mismatch.&quot;)
+</code></pre>
+<hr />
+<h2 id='6-the-else-clause-----与-if-不同的-else-子句'><strong>6. The else Clause — 与 if 不同的 else 子句</strong></h2>
+<p><code>else</code> 可以与 <code>try-except</code> 一起使用。<br/>只有当 <strong>try 中没有发生异常时</strong>，<code>else</code> 才会执行。</p>
+<pre><code class='language-python' lang='python'>try:
+    num = int(input(&quot;Enter number: &quot;))
+except ValueError:
+    print(&quot;Invalid input!&quot;)
+else:
+    print(f&quot;You entered {num}&quot;)
+</code></pre>
+<hr />
+<h2 id='7-the-finally-clause-----无论如何都会执行-非必要'><strong>7. The finally Clause — 无论如何都会执行</strong> (非必要)</h2>
+<p><code>finally</code> 块用于无论是否发生错误都要执行的操作。<br/>常用于<strong>关闭文件、释放资源或断开连接</strong>。</p>
+<pre><code class='language-python' lang='python'>try:
+    file = open(&quot;test.txt&quot;, &quot;r&quot;)
+    content = file.read()
+except FileNotFoundError:
+    print(&quot;File not found.&quot;)
+finally:
+    print(&quot;This block always runs.&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>File not found.
+This block always runs.
+</code></pre>
+<hr />
+<h2 id='8-combine-all完整结构'><strong>8. Combine All（完整结构）</strong></h2>
+<pre><code class='language-python' lang='python'>try:
+    # 1. 尝试执行
+    risky_code()
+except ValueError:
+    # 2. 捕获特定异常
+    print(&quot;Value error!&quot;)
+except Exception as e:
+    # 3. 捕获所有其他异常
+    print(&quot;Other error:&quot;, e)
+else:
+    # 4. 当没有异常时执行
+    print(&quot;Everything went well!&quot;)
+finally:
+    # 5. 总会执行
+    print(&quot;Program finished.&quot;)
+</code></pre>
+<hr />
+<h2 id='9-exception-object异常对象'><strong>9. Exception Object（异常对象）</strong></h2>
+<p>捕获异常后，可以通过 <code>as</code> 获取异常对象，打印错误信息：</p>
+<pre><code class='language-python' lang='python'>try:
+    result = 10 / 0
+except Exception as e:
+    print(&quot;Error details:&quot;, e)
+</code></pre>
+<p>输出：</p>
+<pre><code>Error details: division by zero
+</code></pre>
+<hr />
+<h2 id='10-raising-exceptions-主动抛出异常'><strong>10. Raising Exceptions 主动抛出异常</strong> </h2>
+<p>使用 <code>raise</code> 语句，你可以在程序中主动触发错误：</p>
+<pre><code class='language-python' lang='python'>age = -5
+if age &lt; 0:
+    raise ValueError(&quot;Age cannot be negative!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>ValueError: Age cannot be negative!
+</code></pre>
+<hr />
+<h2 id='11-example-----处理用户输入'><strong>11. Example — 处理用户输入</strong></h2>
+<pre><code class='language-python' lang='python'>def divide(a, b):
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        print(&quot;Cannot divide by zero!&quot;)
+    else:
+        print(&quot;Result =&quot;, result)
+    finally:
+        print(&quot;Operation complete.&quot;)
+
+divide(10, 2)
+divide(10, 0)
+</code></pre>
+<p>输出：</p>
+<pre><code>Result = 5.0
+Operation complete.
+Cannot divide by zero!
+Operation complete.
+</code></pre>
+<hr />
+<h2 id='12-常见异常类型表'><strong>12. 常见异常类型表</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>异常名</th><th>含义</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>ZeroDivisionError</code></td><td>除数为0</td><td><code>10 / 0</code></td></tr><tr><td><code>IndexError</code></td><td>序列索引超界</td><td><code>[1,2][5]</code></td></tr><tr><td><code>KeyError</code></td><td>字典键不存在</td><td><code>{&quot;a&quot;:1}[&quot;b&quot;]</code></td></tr><tr><td><code>TypeError</code></td><td>不同类型操作</td><td><code>&quot;a&quot; + 1</code></td></tr><tr><td><code>ValueError</code></td><td>转换非法</td><td><code>int(&quot;abc&quot;)</code></td></tr><tr><td><code>NameError</code></td><td>变量未定义</td><td><code>print(x)</code></td></tr><tr><td><code>FileNotFoundError</code></td><td>文件不存在</td><td><code>open(&quot;abc.txt&quot;)</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='summary-table-----结构总结'><strong>Summary Table — 结构总结</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>关键字</th><th>英文说明</th><th>中文说明</th></tr></thead>
+<tbody><tr><td><code>try:</code></td><td>Try running code</td><td>尝试执行可能出错的代码</td></tr><tr><td><code>except:</code></td><td>Catch exception</td><td>当异常发生时执行</td></tr><tr><td><code>except TypeError:</code></td><td>Catch specific exception</td><td>捕获特定异常类型</td></tr><tr><td><code>else:</code></td><td>Execute if no exception</td><td>无错误时执行</td></tr><tr><td><code>finally:</code></td><td>Always execute</td><td>无论成功或失败都执行</td></tr><tr><td><code>raise</code></td><td>Manually raise exception</td><td>主动抛出异常</td></tr></tbody>
+</table></figure>
+<p>&nbsp;</p>
+<h1 id='chapter-7file-handlingopen--read--write'>Chapter 7：File Handling(open / read / write)</h1>
+<hr />
+<h3 id='overview--------概述'><strong>Overview —— 概述</strong></h3>
+<p><strong>File Handling</strong> allows Python to store and retrieve data from files on disk.  </p>
+<blockquote><p>文件读写使程序可以与外部数据持久交互，例如保存结果、加载配置、记录日志等。  </p>
+</blockquote>
+<p>Python内置了非常方便的操作接口： <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code>, 以及 <code>with</code> 语法。</p>
+<hr />
+<h2 id='1-opening-a-file-打开文件'><strong>1. Opening a File 打开文件</strong></h2>
+<p>基本语法：</p>
+<pre><code class='language-python' lang='python'>file = open(filename, mode, encoding)
+</code></pre>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>参数</th><th>英文说明</th><th>中文说明</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>filename</code></td><td>name or path of the file</td><td>文件名或路径</td><td><code>&quot;data.txt&quot;</code></td></tr><tr><td><code>mode</code></td><td>operation type</td><td>操作模式</td><td><code>&#39;r&#39;</code>, <code>&#39;w&#39;</code>, <code>&#39;a&#39;</code>, <code>&#39;r+&#39;</code></td></tr><tr><td><code>encoding</code></td><td>character encoding</td><td>字符编码（对文本文件重要）</td><td><code>&#39;utf-8&#39;</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h3 id='common-modes-常见模式'>Common Modes 常见模式</h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>模式</th><th>英文名</th><th>中文说明</th><th>行为</th></tr></thead>
+<tbody><tr><td><code>&#39;r&#39;</code></td><td>Read</td><td>读取模式（默认）</td><td>如果文件不存在会报错</td></tr><tr><td><code>&#39;w&#39;</code></td><td>Write</td><td>写入模式</td><td>会新建文件并<strong>覆盖旧内容</strong></td></tr><tr><td><code>&#39;a&#39;</code></td><td>Append</td><td>追加模式</td><td>向文件末尾追加内容</td></tr><tr><td><code>&#39;r+&#39;</code></td><td>Read + Write</td><td>读写模式</td><td>文件必须存在</td></tr><tr><td><code>&#39;w+&#39;</code></td><td>Write + Read</td><td>写入后可读</td><td>先清空文件</td></tr><tr><td><code>&#39;b&#39;</code></td><td>Binary</td><td>二进制模式</td><td>常用于图片或音频</td></tr><tr><td><code>&#39;t&#39;</code></td><td>Text</td><td>文本模式（默认）</td><td>普通字符读取</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='2-reading-files-读取文件'><strong>2. Reading Files 读取文件</strong></h2>
+<p>打开后可以用 <code>.read()</code>、<code>.readline()</code>、<code>.readlines()</code> 来读。</p>
+<h3 id='示例-2'>示例</h3>
+<pre><code class='language-python' lang='python'>file = open(&quot;example.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;)
+content = file.read()
+print(content)
+file.close()
+</code></pre>
+<p>输出（假设文件内容）：</p>
+<pre><code>Hello Python
+File handling is easy.
+</code></pre>
+<hr />
+<h3 id='按行读取逐行-read-line'>按行读取（逐行 read line）</h3>
+<pre><code class='language-python' lang='python'>file = open(&quot;example.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;)
+
+for line in file:
+    print(line.strip())
+
+file.close()
+</code></pre>
+<p> <code>.strip()</code> 去掉每行末尾的换行符。</p>
+<hr />
+<h3 id='readline-与-readlines'><code>readline()</code> 与 <code>readlines()</code></h3>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法</th><th>功能</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.readline()</code></td><td>读取一行</td><td><code>print(file.readline())</code></td></tr><tr><td><code>.readlines()</code></td><td>读取所有行到列表</td><td><code>lines = file.readlines()</code> → <code>[&#39;line1&#39;, &#39;line2&#39;, …]</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='3-writing-files-写入文件'><strong>3. Writing Files 写入文件</strong></h2>
+<p>写入时通常用 <code>&#39;w&#39;</code> 或 <code>&#39;a&#39;</code> 模式。</p>
+<h3 id='write-示例'><code>.write()</code> 示例</h3>
+<pre><code class='language-python' lang='python'>file = open(&quot;output.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;)
+file.write(&quot;Hello World!\n&quot;)
+file.write(&quot;This is Python.&quot;)
+file.close()
+</code></pre>
+<p>若文件不存在会自动创建，旧内容会被覆盖。</p>
+<hr />
+<h3 id='writelines-示例'><code>.writelines()</code> 示例</h3>
+<pre><code class='language-python' lang='python'>lines = [&quot;First line\n&quot;, &quot;Second line\n&quot;, &quot;Third line\n&quot;]
+file = open(&quot;multi.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;)
+file.writelines(lines)
+file.close()
+</code></pre>
+<hr />
+<h2 id='4-append-files-文件追加'><strong>4. Append Files 文件追加</strong></h2>
+<p><code>&#39;a&#39;</code> 模式会保留原有内容，并将新内容添加在末尾：</p>
+<pre><code class='language-python' lang='python'>file = open(&quot;output.txt&quot;, &quot;a&quot;, encoding=&quot;utf-8&quot;)
+file.write(&quot;\nNew line appended.&quot;)
+file.close()
+</code></pre>
+<hr />
+<h2 id='5-closing-files-关闭文件'><strong>5. Closing Files 关闭文件</strong></h2>
+<p>每次打开文件后，务必记得 <strong>关闭</strong>。</p>
+<pre><code class='language-python' lang='python'>file.close()
+</code></pre>
+<p>否则可能会造成：</p>
+<ul>
+<li>内存资源未释放；</li>
+<li>数据未正确写入磁盘。</li>
+
+</ul>
+<hr />
+<h2 id='6-the-with-statement推荐'><strong>6. The <code>with</code> Statement（推荐）</strong></h2>
+<p>用 <code>with</code> 可以让文件自动关闭 — 更安全，更简洁。</p>
+<pre><code class='language-python' lang='python'>with open(&quot;data.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+    content = file.read()
+    print(content)
+# 文件在此处自动关闭
+</code></pre>
+<p> <code>with</code> 会自动调用 <code>file.close()</code> 就算中途报错也能安全关闭。</p>
+<hr />
+<h2 id='7-writing-and-reading-combined-读写结合'><strong>7. Writing and Reading Combined 读写结合</strong></h2>
+<pre><code class='language-python' lang='python'>with open(&quot;notes.txt&quot;, &quot;w+&quot;, encoding=&quot;utf-8&quot;) as f:
+    f.write(&quot;Learning Python file handling.\n&quot;)
+    f.seek(0)                # 回到文件开头
+    print(f.read())
+</code></pre>
+<p>输出：</p>
+<pre><code>Learning Python file handling.
+</code></pre>
+<hr />
+<h2 id='8-handling-binary-files-二进制文件-非必要'><strong>8. Handling Binary Files 二进制文件</strong> (非必要)</h2>
+<p>常用于图片、音频、PDF等非文本数据。</p>
+<pre><code class='language-python' lang='python'>with open(&quot;image.jpg&quot;, &quot;rb&quot;) as f:
+    data = f.read()
+    print(len(data))  # 输出字节长度
+</code></pre>
+<p>或写入：</p>
+<pre><code class='language-python' lang='python'>with open(&quot;copy.jpg&quot;, &quot;wb&quot;) as f_out:
+    f_out.write(data)
+</code></pre>
+<hr />
+<h2 id='9-file--exception-----文件异常处理'><strong>9. File &amp; Exception — 文件异常处理</strong></h2>
+<p>结合 <code>try … except</code> 可以避免程序因文件问题崩溃：</p>
+<pre><code class='language-python' lang='python'>try:
+    with open(&quot;unknown.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        print(f.read())
+except FileNotFoundError:
+    print(&quot; File not found!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code> File not found!
+</code></pre>
+<hr />
+<h2 id='10-example'><strong>10. Example </strong></h2>
+<pre><code class='language-python' lang='python'>students = {&quot;Tom&quot;: 89, &quot;Lucy&quot;: 95, &quot;Jack&quot;: 72}
+
+with open(&quot;scores.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    for name, score in students.items():
+        f.write(f&quot;{name}: {score}\n&quot;)
+
+# 再读取看看
+with open(&quot;scores.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    print(f.read())
+</code></pre>
+<p>输出：</p>
+<pre><code>Tom: 89
+Lucy: 95
+Jack: 72
+</code></pre>
+<hr />
+<h2 id='11-常用文件方法速查'><strong>11. 常用文件方法速查</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>英文说明</th><th>中文说明</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.read(size)</code></td><td>read N characters</td><td>读取指定数量字符</td><td>&nbsp;</td></tr><tr><td><code>.readline()</code></td><td>read one line</td><td>读取单行</td><td>&nbsp;</td></tr><tr><td><code>.readlines()</code></td><td>read all lines</td><td>读取所有行</td><td>&nbsp;</td></tr><tr><td><code>.write(text)</code></td><td>write a string</td><td>写入字符串</td><td>&nbsp;</td></tr><tr><td><code>.writelines(list)</code></td><td>write list of strings</td><td>写入多行</td><td>&nbsp;</td></tr><tr><td><code>.seek(pos)</code></td><td>move cursor</td><td>移动读写指针</td><td>&nbsp;</td></tr><tr><td><code>.tell()</code></td><td>show current position</td><td>查看当前指针位置</td><td>&nbsp;</td></tr><tr><td><code>.close()</code></td><td>close file</td><td>关闭文件</td><td>&nbsp;</td></tr></tbody>
+</table></figure>
+<h1 id='chapter-8advanced-functions--common-methods'><strong>Chapter 8：Advanced Functions &amp; Common Methods </strong></h1>
+<hr />
+<h3 id='overview--------概述-2'><strong>Overview —— 概述</strong></h3>
+<p><strong>Functions（函数）</strong> 是 Python 的核心机制之一。<br/>在日常编程中，你需要配合<strong>内置函数</strong>（如 <code>len()</code>、<code>sum()</code>）与<strong>对象方法（methods）</strong>（如 <code>list.append()</code>、<code>str.rstrip()</code>）来完成常见操作。</p>
+<hr />
+<h2 id='1-内置函数builtin-functions'><strong>1. 内置函数（Built‑in Functions）</strong></h2>
+<p>Python 提供了大量开箱即用的函数：</p>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>函数</th><th>English Description</th><th>中文说明</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>len(x)</code></td><td>length of x</td><td>返回长度</td><td><code>len([1,2,3]) → 3</code></td></tr><tr><td><code>sum(iterable)</code></td><td>sum all numbers</td><td>求和</td><td><code>sum([1,2,3]) → 6</code></td></tr><tr><td><code>max(x)</code> / <code>min(x)</code></td><td>maximum / minimum value</td><td>最大/最小值</td><td><code>max([3,5,1]) → 5</code></td></tr><tr><td><code>sorted(x)</code></td><td>return sorted list</td><td>返回排序后的列表</td><td><code>sorted([3,1,2]) → [1,2,3]</code></td></tr><tr><td><code>type(x)</code></td><td>show type</td><td>查看数据类型</td><td><code>type(&quot;hi&quot;) → &lt;class &#39;str&#39;&gt;</code></td></tr><tr><td><code>range(n)</code></td><td>sequence of numbers</td><td>生成序列</td><td><code>range(5) → 0...4</code></td></tr><tr><td><code>input()</code></td><td>get user input</td><td>读取输入</td><td><code>name = input(&quot;Name: &quot;)</code></td></tr><tr><td><code>print()</code></td><td>print to screen</td><td>打印输出</td><td><code>print(&quot;Hello&quot;)</code></td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='2-list-methods-----列表的常用方法'><strong>2. List Methods — 列表的常用方法</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能说明</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.append(x)</code></td><td>向列表末尾追加元素</td><td><code>nums.append(100)</code></td></tr><tr><td><code>.insert(i, x)</code></td><td>在索引 i 处插入</td><td><code>nums.insert(1, 50)</code></td></tr><tr><td><code>.extend(lst)</code></td><td>合并另一个列表</td><td><code>a.extend(b)</code></td></tr><tr><td><code>.remove(x)</code></td><td>删除第一个匹配元素</td><td><code>nums.remove(10)</code></td></tr><tr><td><code>.pop(i)</code></td><td>删除并返回元素</td><td><code>nums.pop(0)</code></td></tr><tr><td><code>.clear()</code></td><td>清空列表</td><td><code>nums.clear()</code></td></tr><tr><td><code>.count(x)</code></td><td>统计出现次数</td><td><code>nums.count(5)</code></td></tr><tr><td><code>.index(x)</code></td><td>查找索引位置</td><td><code>nums.index(5)</code></td></tr><tr><td><code>.sort()</code></td><td>原地排序</td><td><code>nums.sort()</code></td></tr><tr><td><code>.reverse()</code></td><td>反转顺序</td><td><code>nums.reverse()</code></td></tr></tbody>
+</table></figure>
+<h3 id='示例-3'>示例：</h3>
+<pre><code class='language-python' lang='python'>nums = [1, 3, 5]
+nums.append(7)
+nums.insert(1, 2)
+nums.extend([9, 11])
+print(nums)        # [1, 2, 3, 5, 7, 9, 11]
+</code></pre>
+<p> <code>.append()</code> 是最常用的 <strong>列表添加方法</strong>。</p>
+<hr />
+<h2 id='3-string-methods-----字符串常用方法'><strong>3. String Methods — 字符串常用方法</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能</th><th>示例 &amp; 结果</th></tr></thead>
+<tbody><tr><td><code>.upper()</code></td><td>转大写</td><td><code>&quot;hi&quot;.upper() → &quot;HI&quot;</code></td></tr><tr><td><code>.lower()</code></td><td>转小写</td><td><code>&quot;Hi&quot;.lower() → &quot;hi&quot;</code></td></tr><tr><td><code>.title()</code></td><td>每词首字母大写</td><td><code>&quot;hello world&quot;.title()</code></td></tr><tr><td><code>.strip()</code></td><td>去除前后空格</td><td><code>&quot; hi &quot;.strip() → &quot;hi&quot;</code></td></tr><tr><td><code>.rstrip()</code></td><td>去除右边空白</td><td><code>&quot;hello\n&quot;.rstrip() → &quot;hello&quot;</code></td></tr><tr><td><code>.lstrip()</code></td><td>去除左边空白</td><td><code>&quot;  hi&quot;.lstrip() → &quot;hi&quot;</code></td></tr><tr><td><code>.split(sep)</code></td><td>切割成列表</td><td><code>&quot;a,b,c&quot;.split(&quot;,&quot;) → [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</code></td></tr><tr><td><code>.join(list)</code></td><td>拼接字符串列表</td><td><code>&quot; &quot;.join([&#39;I&#39;,&#39;am&#39;,&#39;OK&#39;]) → &quot;I am OK&quot;</code></td></tr><tr><td><code>.replace(a,b)</code></td><td>替换</td><td><code>&quot;I like C&quot;.replace(&quot;C&quot;,&quot;Python&quot;)</code></td></tr><tr><td><code>.find(x)</code></td><td>查找下标位置</td><td><code>&quot;apple&quot;.find(&quot;p&quot;) → 1</code></td></tr><tr><td><code>.count(x)</code></td><td>计数</td><td><code>&quot;banana&quot;.count(&quot;a&quot;) → 3</code></td></tr></tbody>
+</table></figure>
+<h3 id='示例演示'>示例演示</h3>
+<pre><code class='language-python' lang='python'>message = &quot;  hello python  \n&quot;
+print(message.rstrip())   # 去掉右边换行 → &quot;  hello python&quot;
+print(message.strip())    # 去掉左右空格 → &quot;hello python&quot;
+print(message.upper())    # &quot;  HELLO PYTHON  \n&quot;
+</code></pre>
+<blockquote><p><code>.rstrip()</code> 专门用于清理<strong>行尾空格和换行符</strong>，非常常用。</p>
+</blockquote>
+<hr />
+<h2 id='4-dictionary-methods-----字典常用方法'><strong>4. Dictionary Methods — 字典常用方法</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.keys()</code></td><td>返回所有键</td><td><code>d.keys()</code></td></tr><tr><td><code>.values()</code></td><td>返回所有值</td><td><code>d.values()</code></td></tr><tr><td><code>.items()</code></td><td>返回键值对</td><td><code>d.items()</code></td></tr><tr><td><code>.get(k, default)</code></td><td>获取键对应值</td><td><code>d.get(&quot;age&quot;, 0)</code></td></tr><tr><td><code>.update({...})</code></td><td>更新或添加键值</td><td><code>d.update({&quot;age&quot;: 20})</code></td></tr><tr><td><code>.pop(k)</code></td><td>删除键并返回值</td><td><code>d.pop(&quot;name&quot;)</code></td></tr><tr><td><code>.clear()</code></td><td>清空字典</td><td><code>d.clear()</code></td></tr></tbody>
+</table></figure>
+<h3 id='示例-4'>示例</h3>
+<pre><code class='language-python' lang='python'>student = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 18}
+print(student.get(&quot;age&quot;))        # 18
+student.update({&quot;score&quot;: 90})
+print(student)                   # {&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 18, &#39;score&#39;: 90}
+</code></pre>
+<hr />
+<h2 id='5-set-methods-----集合常用方法'><strong>5. Set Methods — 集合常用方法</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>方法名</th><th>功能</th><th>示例</th></tr></thead>
+<tbody><tr><td><code>.add(x)</code></td><td>添加元素</td><td><code>s.add(5)</code></td></tr><tr><td><code>.remove(x)</code></td><td>删除（若无则报错）</td><td><code>s.remove(2)</code></td></tr><tr><td><code>.discard(x)</code></td><td>删除（若无则跳过）</td><td><code>s.discard(2)</code></td></tr><tr><td><code>.clear()</code></td><td>清空集合</td><td><code>s.clear()</code></td></tr><tr><td><code>.union(t)</code></td><td>并集</td><td><code>s.union(t)</code></td></tr><tr><td><code>.intersection(t)</code></td><td>交集</td><td><code>s.intersection(t)</code></td></tr><tr><td><code>.difference(t)</code></td><td>差集</td><td><code>s.difference(t)</code></td></tr></tbody>
+</table></figure>
+<h3 id='示例-5'>示例</h3>
+<pre><code class='language-python' lang='python'>a = {1, 2, 3}
+b = {3, 4, 5}
+print(a.union(b))          # {1, 2, 3, 4, 5}
+print(a.intersection(b))   # {3}
+</code></pre>
+<hr />
+<h2 id='6-chaining-methods-链式方法调用'><strong>6. Chaining Methods 链式方法调用</strong></h2>
+<pre><code class='language-python' lang='python'>msg = &quot;  python functions  &quot;
+clean = msg.strip().title().replace(&quot;Functions&quot;, &quot;Methods&quot;)
+print(clean)  # &quot;Python Methods&quot;
+</code></pre>
+<hr />
+<h2 id='7-custom-functions-revisited-自定义函数进阶'><strong>7. Custom Functions Revisited 自定义函数进阶</strong></h2>
+<pre><code class='language-python' lang='python'>def clean_text(s):
+    &quot;&quot;&quot;清理字符串两端空格并设为标题格式&quot;&quot;&quot;
+    return s.strip().title()
+
+print(clean_text(&quot;   hello world   &quot;))   # Hello World
+</code></pre>
+<hr />
+<h2 id='8-real-example-示例格式化名单'><strong>8. Real Example 示例：格式化名单</strong></h2>
+<pre><code class='language-python' lang='python'>names = [&quot; alice &quot;, &quot;Bob &quot;, &quot;CHARLIE  &quot;]
+clean_names = []
+
+for n in names:
+    clean_names.append(n.strip().title())
+
+print(clean_names)
+</code></pre>
+<p>输出：</p>
+<pre><code>[&#39;Alice&#39;, &#39;Bob&#39;, &#39;Charlie&#39;]
+</code></pre>
+<p> <code>.strip()</code> 去空格 + <code>.title()</code> 首字母大写 + <code>.append()</code> 加入新列表。</p>
+<hr />
+<h2 id='9-常见字符串与列表函数对照表'><strong>9. 常见字符串与列表函数对照表</strong></h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>操作</th><th>对象</th><th>方法 / 函数</th><th>示例</th></tr></thead>
+<tbody><tr><td>添加元素</td><td>list</td><td><code>.append(x)</code></td><td><code>lst.append(5)</code></td></tr><tr><td>计数</td><td>list/str</td><td><code>.count(x)</code></td><td><code>&quot;apple&quot;.count(&quot;p&quot;)</code></td></tr><tr><td>去空格</td><td>str</td><td><code>.strip()</code> / <code>.rstrip()</code></td><td><code>&quot;  hi &quot;.strip()</code></td></tr><tr><td>切割</td><td>str</td><td><code>.split(&quot;,&quot;)</code></td><td><code>&quot;a,b&quot;.split(&quot;,&quot;)</code></td></tr><tr><td>拼接</td><td>list 到 str</td><td><code>&quot;,&quot;.join(list)</code></td><td><code>&quot;,&quot;.join([&quot;a&quot;,&quot;b&quot;])</code></td></tr><tr><td>长度</td><td>list/str</td><td><code>len(x)</code></td><td><code>len(&quot;hi&quot;) → 2</code></td></tr><tr><td>排序</td><td>list</td><td><code>.sort()</code></td><td><code>nums.sort()</code></td></tr><tr><td>清空</td><td>list/dict</td><td><code>.clear()</code></td><td><code>lst.clear()</code></td></tr></tbody>
+</table></figure>
+<hr />
+<p>&nbsp;</p>
+<h1 id='chapter-9python-print'>Chapter 9：Python <code>print()</code></h1>
+<hr />
+<h2 id='1--print-的基本作用'>1 ， <code>print()</code> 的基本作用</h2>
+<p><code>print()</code> 是 Python 的内置输出函数，用来：</p>
+<blockquote><p><strong>把数据输出到标准输出（通常是屏幕）或文件中。</strong></p>
+</blockquote>
+<p>最常见用法：</p>
+<pre><code class='language-python' lang='python'>print(&quot;Hello, world!&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Hello, world!
+</code></pre>
+<hr />
+<h2 id='2--print-的语法结构'>2 ， <code>print()</code> 的语法结构</h2>
+<p>完整语法：</p>
+<pre><code class='language-python' lang='python'>print(*objects, sep=&#39; &#39;, end=&#39;\n&#39;, file=sys.stdout, flush=False)
+</code></pre>
+<p>我们逐个解释这几个常用参数👇</p>
+<hr />
+<h3 id='objects'><code>*objects</code></h3>
+<ul>
+<li>表示要打印的一个或多个对象（字符串、数字、变量都可以）。</li>
+<li>多个对象用逗号分隔。</li>
+
+</ul>
+<pre><code class='language-python' lang='python'>print(&quot;Python&quot;, &quot;is&quot;, &quot;fun&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Python is fun
+</code></pre>
+<p>💬 默认情况多个对象之间用空格分隔。</p>
+<hr />
+<h3 id='sep-separator-----分隔符'><code>sep</code> (separator) — 分隔符</h3>
+<p>定义多个项目之间的「分隔符」。</p>
+<p>默认是一个空格 <code>&#39; &#39;</code>，可以自定义任何分隔符：</p>
+<pre><code class='language-python' lang='python'>print(&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, sep=&quot;, &quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>1, 2, 3
+</code></pre>
+<p>更多例子：</p>
+<pre><code class='language-python' lang='python'>print(&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, sep=&quot; | &quot;)
+# 输出: apple | banana | cherry
+</code></pre>
+<p>&nbsp;</p>
+<hr />
+<h3 id='end-----结束符'><code>end</code> — 结束符</h3>
+<p>定义每次 <code>print()</code> 执行后的结束字符（默认是换行 <code>\n</code>）。</p>
+<ul>
+<li><p>默认：</p>
+<pre><code class='language-python' lang='python'>print(&quot;Hello&quot;)
+print(&quot;World&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Hello
+World
+</code></pre>
+</li>
+<li><p>自定义结束符：</p>
+<pre><code class='language-python' lang='python'>print(&quot;Hello&quot;, end=&quot;, &quot;)
+print(&quot;World&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Hello, World
+</code></pre>
+</li>
+
+</ul>
+<hr />
+<h3 id='file-----输出目标'><code>file</code> — 输出目标</h3>
+<p>可以让打印内容输出到文件，而不是屏幕。</p>
+<pre><code class='language-python' lang='python'>with open(&quot;output.txt&quot;, &quot;w&quot;) as f:
+    print(&quot;Save this text.&quot;, file=f)
+</code></pre>
+<p>💬 默认目标是屏幕（<code>sys.stdout</code>），<br/>但加上 <code>file=</code> 可以重定向到文件。</p>
+<hr />
+<h3 id='flush-刷新'><code>flush</code> (刷新)</h3>
+<p>指定是否立即刷新缓存区输出。<br/>默认 <code>False</code>（可以稍作延迟）。<br/>设为 <code>True</code> 强制即时打印（用于实时输出或日志）。</p>
+<pre><code class='language-python' lang='python'>print(&quot;Processing...&quot;, flush=True)
+</code></pre>
+<hr />
+<h2 id='3--打印不同类型的数据'>3 ， 打印不同类型的数据</h2>
+<h3 id='打印数字'>打印数字：</h3>
+<pre><code class='language-python' lang='python'>x = 10
+print(x)
+</code></pre>
+<p>输出：</p>
+<pre><code>10
+</code></pre>
+<h3 id='打印字符串与变量'>打印字符串与变量：</h3>
+<pre><code class='language-python' lang='python'>name = &quot;Alice&quot;
+age = 22
+print(&quot;Name:&quot;, name, &quot;Age:&quot;, age)
+</code></pre>
+<p>输出：</p>
+<pre><code>Name: Alice Age: 22
+</code></pre>
+<h3 id='同时打印复杂对象'>同时打印复杂对象：</h3>
+<pre><code class='language-python' lang='python'>print([1, 2, 3], {&quot;a&quot;: 1, &quot;b&quot;: 2})
+</code></pre>
+<p>输出：</p>
+<pre><code>[1, 2, 3] {&#39;a&#39;: 1, &#39;b&#39;: 2}
+</code></pre>
+<hr />
+<h2 id='4--特殊用法格式化与连接'>4 ， 特殊用法：格式化与连接</h2>
+<h3 id='f-string推荐'>f-string（推荐）</h3>
+<p>可以在字符串里直接嵌变量：</p>
+<pre><code class='language-python' lang='python'>name = &quot;Bob&quot;
+score = 95
+print(f&quot;{name} scored {score}&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Bob scored 95
+</code></pre>
+<h3 id='拼接字符串'>拼接字符串</h3>
+<p>使用 <code>+</code> 拼接：</p>
+<pre><code class='language-python' lang='python'>print(&quot;Hello &quot; + &quot;World&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>Hello World
+</code></pre>
+<p>不过拼接时如果有数字要转换类型：</p>
+<pre><code class='language-python' lang='python'>print(&quot;Score: &quot; + str(score))
+</code></pre>
+<hr />
+<h2 id='5--组合示例对照'>5 ， 组合示例对照</h2>
+<figure class='table-figure'><table>
+<thead>
+<tr><th>用法</th><th>示例代码</th><th>输出结果</th></tr></thead>
+<tbody><tr><td>默认打印</td><td><code>print(&quot;Hello&quot;, &quot;Python&quot;)</code></td><td><code>Hello Python</code></td></tr><tr><td>自定义分隔符</td><td><code>print(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, sep=&quot;, &quot;)</code></td><td><code>A, B, C</code></td></tr><tr><td>不换行</td><td><code>print(&quot;Hello&quot;, end=&quot; &quot;)</code></td><td><code>Hello</code>（和下一次输出连在一起）</td></tr><tr><td>输出到文件</td><td><code>print(&quot;data&quot;, file=f)</code></td><td>文件中写入 <code>&quot;data&quot;</code></td></tr><tr><td>实时刷新</td><td><code>print(&quot;Loading...&quot;, flush=True)</code></td><td>立即显示，不缓存</td></tr></tbody>
+</table></figure>
+<hr />
+<h2 id='6--print-小技巧与注意事项'>6 ， <code>print()</code> 小技巧与注意事项</h2>
+<ul>
+<li>自动加空格：多个参数自动插入空格分隔。</li>
+<li>自动换行：默认结尾加 <code>\n</code>。</li>
+<li>输出类型安全：不同数据类型（数字、字符串）都能直接打印，不需要转换。</li>
+<li>性能：<code>print()</code> 适合调试输出，不建议频繁打印大量数据。</li>
+
+</ul>
+<hr />
+<p>&nbsp;</p>
 </body>
 </html>
