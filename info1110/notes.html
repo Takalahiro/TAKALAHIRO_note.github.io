@@ -8,49 +8,34 @@
 </head>
 <body>
   <header>
-    <h1> Python </h1>
+    <h1>Python</h1>
     <p class="subtitle">INFO1110 学习中心 · TAKAHIRO</p>
   </header>
 
   <nav>
-    <a href="index.html"> 返回主页</a>
+    <a href="index.html">返回主页</a>
   </nav>
 
   <main class="note-layout">
-    <div class="note-container" id="note-container">
-      <div id="note-content">正在加载笔记内容...</div>
-    </div>
-
     <aside class="sidebar">
-      <h3> 目录</h3>
+      <h3>目录</h3>
       <ul id="toc"></ul>
     </aside>
+
+    <section class="note-container">
+      <div id="note-content">正在加载笔记内容...</div>
+    </section>
   </main>
-<div class="toolbar">
-  <input type="text" id="search-box" placeholder=" search">
-  <button id="toggle-theme-btn"> 切换风格</button>
-  <button id="toggle-font-btn"> 切换字体</button>
-</div>
 
-<div class="note-layout">
-  <aside class="sidebar">
-    <h3>目录</h3>
-    <ul id="toc"></ul>
-  </aside>
+  <div class="toolbar">
+    <input type="text" id="search-box" placeholder="search">
+    <button id="toggle-theme-btn">切换风格</button>
+    <button id="toggle-font-btn">切换字体</button>
+  </div>
 
-  <section class="note-container">
-    <div id="note-content">正在加载笔记内容...</div>
-  </section>
-</div>
-
-
-  <footer>
-    © 2026 INFO1110 TAKAHIRO
-  </footer>
+  <footer>© 2026 INFO1110 TAKAHIRO</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="notes.js"></script>
-  <link href="notes.css" rel="stylesheet">
-
 </body>
 </html>
