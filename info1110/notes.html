@@ -12,26 +12,24 @@
   <!-- Markdown 转换 & 代码高亮 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/highlight.js/lib/core.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/javascript.min.js"></script>
-  <script>hljs.registerLanguage('javascript', window.hljsJavascript);</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-<script src="script.js"></script> <!-- 必须最后加载 -->
-
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="background"></div>
-
   <header class="glass-header">
     <h1>🐍 Python学习笔记</h1>
   </header>
 
-  <!-- 主体：左侧目录 + 右侧笔记 -->
-  <main class="glass-container">
-    <aside id="tocContainer" class="glass-toc"></aside>
-    <section id="notesContainer" class="glass-notes">加载中，请稍候...</section>
+  <main class="glass-card">
+  <!-- 目录区域 -->
+    <div id="tocContainer" class="glass-toc"></div>
+
+  <!-- 笔记内容区域 -->
+    <div id="notesContainer">加载中，请稍候...</div>
   </main>
+
 
   <footer class="glass-footer">
     <p>© 2026 Takalahiro | info1110 Python笔记</p>
