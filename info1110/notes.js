@@ -1,18 +1,49 @@
 // ==========================
 // 1. 加载 Markdown 文件
 // ==========================
-async function loadMarkdown(path) {
+async function loadNote() {
   try {
-    const response = await fetch(path);
+    // 从 URL 参数读取文件名，例如 ?file=python.md
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file') || 'example.md';
+
+    // 自动判断相对路径（适用于你的 GitHub Pages）
+    const response = await fetch(`notes/${file}`);
+
+    if (!response.ok) {
+      throw new Error(`无法加载笔记: ${file}`);
+    }
+
     const mdText = await response.text();
-    const htmlContent = marked.parse(mdText);
-    document.getElementById('note-content').innerHTML = htmlContent;
-    enhancePage();
-  } catch (err) {
-    document.getElementById('note-content').innerHTML = "<p>❌ 加载笔记失败...</p>";
-    console.error(err);
+    const contentDiv = document.getElementById('note-content');
+
+    if (!window.marked) {
+      contentDiv.innerHTML = '❌ Markdown 渲染库未加载, 请检查是否包含 marked.min.js';
+      return;
+    }
+
+    contentDiv.innerHTML = marked.parse(mdText);
+    generateTOC();
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById('note-content').innerText = '❌ 笔记加载失败，请检查路径或文件名';
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadNote();
+
+  document.getElementById('toggle-theme-btn').addEventListener('click', toggleTheme);
+  document.getElementById('toggle-font-btn').addEventListener('click', toggleFont);
+
+  // 恢复主题与字体
+  if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+  const fontMode = localStorage.getItem('font');
+  if (fontMode === 'serif') document.body.classList.add('serif-font');
+  else if (fontMode === 'mono') document.body.classList.add('mono-font');
+});
+
 
 // ==========================
 // 2. 目录
