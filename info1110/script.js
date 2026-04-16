@@ -15,9 +15,11 @@ async function loadMarkdownNote() {
     // 用 marked 转换 Markdown 为 HTML
     const htmlContent = marked.parse(mdText, {
       highlight: (code, lang) => {
-    return hljs.getLanguage(lang)
+    hljs.getLanguage(lang)
         ? hljs.highlight(code, { language: lang }).value
         : hljs.highlightAuto(code).value;
+}
+
 }
 
 }
