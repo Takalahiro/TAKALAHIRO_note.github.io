@@ -14,10 +14,14 @@ async function loadMarkdownNote() {
 
     // 用 marked 转换 Markdown 为 HTML
     const htmlContent = marked.parse(mdText, {
-      highlight: (code, lang) =>
-        hljs.getLanguage(lang)
-          ? hljs.highlight(code, { language: lang }).value
-          : hljs.highlightAuto(code).value
+      highlight: (code, lang) => {
+    return hljs.getLanguage(lang)
+        ? hljs.highlight(code, { language: lang }).value
+        : hljs.highlightAuto(code).value;
+}
+
+}
+
     });
 
     contentArea.innerHTML = htmlContent;
@@ -38,7 +42,14 @@ async function loadMarkdownNote() {
  * 自动生成左侧目录
  * @param {HTMLElement} contentArea - 笔记内容区域
  * @param {HTMLElement} tocArea - 目录显示区域
+ 
  */
+if (!headings.length) {
+    tocArea.innerHTML = `<p>⚠️ 暂无可生成的标题。</p>`;
+    console.warn("未找到任何标题元素（h1~h6）。");
+    return;
+}
+
 function generateTOC(contentArea, tocArea) {
   if (!contentArea || !tocArea) return;
 
